@@ -248,21 +248,25 @@
     #hero {
       position: relative; min-height: 100vh;
       display: flex; align-items: center; justify-content: center; overflow: hidden;
-      background: var(--bg);
+      background: var(--bg) url('assets/hero-bg.jpg') center/cover no-repeat;
     }
-    #hero-bg {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      opacity: 0.32; z-index: 0;
-      pointer-events: none;
+    .hero-video-wrap {
+      position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
     }
-    [data-theme="light"] #hero-bg { opacity: 0.14; }
+    .hero-video-wrap iframe {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100vw; height: 56.25vw;
+      min-width: 177.78vh; min-height: 100vh;
+      border: none; pointer-events: none;
+    }
     .hero-bg-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(180deg, rgba(10,15,30,0.55) 0%, rgba(10,15,30,0.30) 50%, rgba(10,15,30,0.70) 100%);
     }
     [data-theme="light"] .hero-bg-overlay {
-      background: linear-gradient(180deg, rgba(240,245,255,0.60) 0%, rgba(240,245,255,0.30) 50%, rgba(240,245,255,0.65) 100%);
+      background: linear-gradient(180deg,
+        rgba(240,245,255,0.72) 0%, rgba(240,245,255,0.50) 50%, rgba(240,245,255,0.78) 100%);
     }
     #hero-canvas { position: absolute; inset: 0; z-index: 2; }
     .hero-overlay {
@@ -867,7 +871,14 @@
      HERO
 ============================================================ -->
 <section id="hero">
-  <img id="hero-bg" src="assets/hero-bg.jpg" alt="" loading="eager" aria-hidden="true">
+  <div class="hero-video-wrap" aria-hidden="true">
+    <iframe
+      src="https://www.youtube.com/embed/ObD0WSkty8M?autoplay=1&mute=1&loop=1&playlist=ObD0WSkty8M&controls=0&modestbranding=1&showinfo=0&playsinline=1&rel=0"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      title="Tampere city background video">
+    </iframe>
+  </div>
   <div class="hero-bg-overlay"></div>
   <canvas id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
