@@ -1,0 +1,2219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MIDHEM 2026 — Mining Imaging Data for Hydrological and Environmental Modelling</title>
+  <meta name="description" content="MIDHEM Workshop at IEEE ICIP 2026, Tampere, Finland — Mining Imaging Data for Hydrological and Environmental Modelling" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    /* ========================================
+       CSS CUSTOM PROPERTIES
+    ======================================== */
+    :root {
+      --bg: #0A0F1E;
+      --bg-card: #0D1526;
+      --bg-card2: #111827;
+      --blue: #2979FF;
+      --cyan: #00E5FF;
+      --teal: #00BFA5;
+      --gold: #FFD600;
+      --text: #E8EDF5;
+      --text-muted: #8899BB;
+      --border: rgba(41, 121, 255, 0.2);
+      --border-cyan: rgba(0, 229, 255, 0.2);
+      --glow-blue: 0 0 20px rgba(41, 121, 255, 0.4);
+      --glow-cyan: 0 0 20px rgba(0, 229, 255, 0.4);
+      --radius: 12px;
+      --radius-lg: 20px;
+      --transition: 0.3s ease;
+    }
+
+    /* ========================================
+       RESET & BASE
+    ======================================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Space Grotesk', sans-serif;
+      line-height: 1.2;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    img { max-width: 100%; display: block; }
+
+    /* ========================================
+       UTILITY
+    ======================================== */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section {
+      padding: 6rem 0;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 600px;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header .section-subtitle {
+      margin: 0 auto;
+    }
+
+    .glass-card {
+      background: rgba(13, 21, 38, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .glow-text {
+      text-shadow: var(--glow-blue);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-blue { background: rgba(41, 121, 255, 0.15); color: var(--blue); border: 1px solid rgba(41, 121, 255, 0.3); }
+    .badge-cyan { background: rgba(0, 229, 255, 0.12); color: var(--cyan); border: 1px solid rgba(0, 229, 255, 0.25); }
+    .badge-gold { background: rgba(255, 214, 0, 0.12); color: var(--gold); border: 1px solid rgba(255, 214, 0, 0.25); }
+    .badge-teal { background: rgba(0, 191, 165, 0.12); color: var(--teal); border: 1px solid rgba(0, 191, 165, 0.25); }
+    .badge-gray { background: rgba(136, 153, 187, 0.12); color: var(--text-muted); border: 1px solid rgba(136, 153, 187, 0.2); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-primary {
+      background: var(--blue);
+      color: #fff;
+      box-shadow: 0 0 24px rgba(41, 121, 255, 0.5);
+    }
+    .btn-primary:hover {
+      background: #4d8fff;
+      box-shadow: 0 0 36px rgba(41, 121, 255, 0.7);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      border: 1.5px solid var(--cyan);
+    }
+    .btn-outline:hover {
+      background: rgba(0, 229, 255, 0.08);
+      box-shadow: var(--glow-cyan);
+      transform: translateY(-1px);
+    }
+
+    .btn-sm {
+      padding: 0.5rem 1.25rem;
+      font-size: 0.85rem;
+    }
+
+    /* Fade-in animation */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-in.delay-1 { transition-delay: 0.1s; }
+    .fade-in.delay-2 { transition-delay: 0.2s; }
+    .fade-in.delay-3 { transition-delay: 0.3s; }
+    .fade-in.delay-4 { transition-delay: 0.4s; }
+
+    /* SVG Wave */
+    .wave-divider { display: block; width: 100%; overflow: hidden; line-height: 0; }
+    .wave-divider svg { display: block; }
+
+    /* ========================================
+       NAVBAR
+    ======================================== */
+    #navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1.25rem 0;
+      transition: background 0.4s ease, padding 0.4s ease, backdrop-filter 0.4s ease;
+    }
+
+    #navbar.scrolled {
+      background: rgba(10, 15, 30, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 0;
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cyan);
+      letter-spacing: 0.05em;
+      text-shadow: var(--glow-cyan);
+    }
+
+    .nav-logo span { color: var(--text); }
+
+    .nav-links {
+      display: none;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      padding: 0.5rem 0.85rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--text); background: rgba(255,255,255,0.05); }
+
+    .nav-cta { display: none; }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: rgba(10, 15, 30, 0.98);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border);
+      padding: 1rem 1.5rem 1.5rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      font-weight: 500;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .mobile-menu a:hover { color: var(--cyan); }
+    .mobile-menu .btn { margin-top: 1rem; align-self: flex-start; }
+
+    @media (min-width: 768px) {
+      .nav-links { display: flex; }
+      .nav-cta { display: inline-flex; }
+      .hamburger { display: none; }
+    }
+
+    /* ========================================
+       HERO
+    ======================================== */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #hero-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(41,121,255,0.08) 0%, transparent 70%);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      padding: 0 1.5rem;
+      padding-top: 5rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.4rem 1.1rem;
+      border-radius: 999px;
+      background: rgba(41, 121, 255, 0.1);
+      border: 1px solid rgba(41, 121, 255, 0.3);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--blue);
+      margin-bottom: 1.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .hero-badge i { color: var(--cyan); }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, #ffffff 0%, #00E5FF 35%, #2979FF 65%, #ffffff 100%);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gradientShift 6s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      font-weight: 400;
+    }
+
+    .hero-tagline strong { color: var(--cyan); font-weight: 600; }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 3.5rem;
+    }
+
+    /* Countdown */
+    .countdown-wrapper {
+      margin-top: 0.5rem;
+    }
+
+    .countdown-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .countdown {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .countdown-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .countdown-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 500;
+      color: var(--cyan);
+      text-shadow: var(--glow-cyan);
+      min-width: 3ch;
+      text-align: center;
+      line-height: 1;
+    }
+
+    .countdown-unit-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .countdown-sep {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 2rem;
+      color: var(--border);
+      align-self: center;
+      padding-bottom: 1rem;
+    }
+
+    .hero-scroll-hint {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(8px); }
+    }
+
+    /* ========================================
+       ABOUT
+    ======================================== */
+    #about {
+      background: linear-gradient(180deg, var(--bg) 0%, #080C18 100%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+      .about-grid { grid-template-columns: 1.2fr 1fr; align-items: start; }
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-size: 1.025rem;
+      line-height: 1.8;
+    }
+
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .stat-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat-card {
+      padding: 1.25rem 1rem;
+      text-align: center;
+      border-radius: var(--radius);
+      background: rgba(13, 21, 38, 0.9);
+      border: 1px solid var(--border);
+    }
+
+    .stat-card i {
+      font-size: 1.5rem;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    .topic-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .topic-tag {
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      background: rgba(41, 121, 255, 0.08);
+      border: 1px solid rgba(41, 121, 255, 0.2);
+      color: var(--text);
+      cursor: default;
+      transition: var(--transition);
+    }
+
+    .topic-tag:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: rgba(0, 229, 255, 0.4);
+      color: var(--cyan);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
+    }
+
+    .about-tags-section h4 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 1.25rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ========================================
+       SPEAKERS
+    ======================================== */
+    #speakers {
+      background: #080C18;
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.75rem;
+    }
+
+    .speaker-card {
+      position: relative;
+      padding: 2rem 1.5rem;
+      border-radius: var(--radius-lg);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      text-align: center;
+      transition: var(--transition);
+      overflow: hidden;
+    }
+
+    .speaker-card::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(41,121,255,0.4), rgba(0,229,255,0.2), transparent 50%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 1px;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+
+    .speaker-card:hover::before { opacity: 1; }
+    .speaker-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(41,121,255,0.15); }
+
+    .speaker-card.keynote {
+      border-color: rgba(41, 121, 255, 0.4);
+      background: linear-gradient(135deg, rgba(41,121,255,0.06) 0%, var(--bg-card) 50%);
+    }
+
+    .speaker-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: var(--blue);
+      background: linear-gradient(135deg, rgba(41,121,255,0.15), rgba(0,229,255,0.08));
+      border: 2px solid rgba(41,121,255,0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .speaker-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: linear-gradient(135deg, var(--blue), var(--cyan)) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: destination-out;
+      mask-composite: exclude;
+    }
+
+    .speaker-keynote-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+
+    .speaker-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.35rem;
+    }
+
+    .speaker-affiliation {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .speaker-country {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .speaker-talk {
+      font-size: 0.82rem;
+      color: var(--cyan);
+      font-style: italic;
+      margin-bottom: 1.25rem;
+      line-height: 1.5;
+    }
+
+    .speaker-link {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+    .speaker-link:hover { color: var(--blue); }
+    .speaker-link i { margin-right: 0.3rem; }
+
+    .keynote-note {
+      margin-top: 2.5rem;
+      padding: 1rem 1.5rem;
+      border-radius: var(--radius);
+      background: rgba(41, 121, 255, 0.06);
+      border: 1px solid rgba(41, 121, 255, 0.2);
+      text-align: center;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .keynote-note i { color: var(--gold); margin-right: 0.4rem; }
+
+    /* ========================================
+       SCHEDULE
+    ======================================== */
+    #schedule {
+      background: linear-gradient(180deg, #080C18 0%, var(--bg) 100%);
+    }
+
+    .schedule-tba {
+      text-align: center;
+      padding: 1rem 0 3rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 1.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--blue), var(--cyan), var(--teal));
+      border-radius: 2px;
+    }
+
+    @media (min-width: 640px) {
+      .timeline::before { left: 50%; transform: translateX(-50%); }
+    }
+
+    .timeline-item {
+      position: relative;
+      padding-left: 4rem;
+      margin-bottom: 2rem;
+    }
+
+    @media (min-width: 640px) {
+      .timeline-item {
+        padding-left: 0;
+        display: grid;
+        grid-template-columns: 1fr 2.5rem 1fr;
+        gap: 0 1rem;
+        align-items: start;
+      }
+      .timeline-item:nth-child(even) .tl-content { grid-column: 3; }
+      .timeline-item:nth-child(even) .tl-dot { grid-column: 2; }
+      .timeline-item:nth-child(even) .tl-time { grid-column: 1; grid-row: 1; text-align: right; }
+      .timeline-item:nth-child(odd) .tl-content { grid-column: 1; }
+      .timeline-item:nth-child(odd) .tl-dot { grid-column: 2; }
+      .timeline-item:nth-child(odd) .tl-time { grid-column: 3; }
+    }
+
+    .tl-dot {
+      position: absolute;
+      left: 0.55rem;
+      top: 0.25rem;
+      width: 1rem;
+      height: 1rem;
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 640px) {
+      .tl-dot {
+        position: static;
+        margin-top: 0.25rem;
+        justify-self: center;
+      }
+    }
+
+    .tl-dot-keynote { background: var(--blue); box-shadow: 0 0 10px var(--blue); }
+    .tl-dot-oral { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+    .tl-dot-poster { background: var(--teal); box-shadow: 0 0 10px var(--teal); }
+    .tl-dot-break { background: var(--text-muted); }
+    .tl-dot-award { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
+
+    .tl-content {
+      padding: 1rem 1.25rem;
+      border-radius: var(--radius);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+    }
+
+    .tl-session-type {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.3rem;
+    }
+    .tl-type-keynote { color: var(--blue); }
+    .tl-type-oral { color: var(--cyan); }
+    .tl-type-poster { color: var(--teal); }
+    .tl-type-break { color: var(--text-muted); }
+    .tl-type-award { color: var(--gold); }
+
+    .tl-title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .tl-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .tl-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding-top: 1.25rem;
+    }
+
+    /* ========================================
+       CALL FOR PAPERS
+    ======================================== */
+    #cfp {
+      background: #080C18;
+    }
+
+    .cfp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    @media (min-width: 1024px) {
+      .cfp-grid { grid-template-columns: 1.2fr 1fr; }
+    }
+
+    .cfp-topics h3 {
+      font-size: 1.1rem;
+      margin-bottom: 1.5rem;
+      color: var(--cyan);
+    }
+
+    .topic-group {
+      margin-bottom: 2rem;
+    }
+
+    .topic-group h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--blue);
+      margin-bottom: 0.75rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .topic-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .topic-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .topic-list li i {
+      color: var(--cyan);
+      font-size: 0.7rem;
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    .submission-card {
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+    }
+
+    .submission-card h3 {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .submission-card h3 i { color: var(--blue); }
+
+    .sub-rule {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.85rem;
+      padding: 0.9rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .sub-rule:last-of-type { border-bottom: none; margin-bottom: 1.5rem; }
+
+    .sub-rule-icon {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 8px;
+      background: rgba(41,121,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--blue);
+      font-size: 0.85rem;
+    }
+
+    .sub-rule-text { font-size: 0.88rem; }
+    .sub-rule-text strong { color: var(--text); display: block; margin-bottom: 0.15rem; }
+    .sub-rule-text span { color: var(--text-muted); }
+
+    /* ========================================
+       DATES
+    ======================================== */
+    #dates {
+      background: linear-gradient(180deg, #080C18 0%, var(--bg) 100%);
+    }
+
+    .dates-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .date-card {
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .date-card:hover { transform: translateY(-3px); }
+
+    .date-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    }
+
+    .date-card.blue::before { background: linear-gradient(90deg, var(--blue), var(--cyan)); }
+    .date-card.cyan::before { background: linear-gradient(90deg, var(--cyan), var(--teal)); }
+    .date-card.teal::before { background: var(--teal); }
+    .date-card.gold::before { background: var(--gold); }
+
+    .date-card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.1rem;
+    }
+
+    .date-card.blue .date-card-icon { background: rgba(41,121,255,0.12); color: var(--blue); }
+    .date-card.cyan .date-card-icon { background: rgba(0,229,255,0.1); color: var(--cyan); }
+    .date-card.teal .date-card-icon { background: rgba(0,191,165,0.1); color: var(--teal); }
+    .date-card.gold .date-card-icon { background: rgba(255,214,0,0.1); color: var(--gold); }
+
+    .date-card-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .date-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .date-card-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .date-card.blue .date-card-date { color: var(--blue); }
+    .date-card.cyan .date-card-date { color: var(--cyan); }
+    .date-card.teal .date-card-date { color: var(--teal); }
+    .date-card.gold .date-card-date { color: var(--gold); }
+
+    /* Mini countdown in date card */
+    .mini-countdown {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+    }
+
+    .mini-cd-unit {
+      text-align: center;
+    }
+
+    .mini-cd-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--blue);
+      display: block;
+      line-height: 1;
+    }
+
+    .mini-cd-label {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .mini-cd-sep {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem;
+      color: var(--border);
+      align-self: flex-start;
+      margin-top: 0.1rem;
+    }
+
+    /* ========================================
+       ORGANIZERS
+    ======================================== */
+    #organizers {
+      background: var(--bg);
+    }
+
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.75rem;
+      margin-bottom: 4rem;
+    }
+
+    .org-card {
+      padding: 1.75rem;
+      border-radius: var(--radius-lg);
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: var(--transition);
+    }
+
+    .org-card:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(41,121,255,0.12); }
+
+    .org-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(41,121,255,0.2), rgba(0,229,255,0.1));
+      border: 2px solid rgba(41,121,255,0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--blue);
+      flex-shrink: 0;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .org-info { flex: 1; min-width: 0; }
+
+    .org-name {
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .org-affiliation {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .org-email {
+      font-size: 0.78rem;
+      color: var(--blue);
+      word-break: break-all;
+      transition: var(--transition);
+    }
+    .org-email:hover { color: var(--cyan); }
+
+    /* IPC section */
+    .ipc-section h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .ipc-section h3 i { color: var(--cyan); }
+
+    .ipc-subtitle {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+    }
+
+    .ipc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .ipc-card {
+      padding: 0.85rem 1rem;
+      border-radius: 10px;
+      background: rgba(13, 21, 38, 0.6);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+
+    .ipc-card:hover {
+      border-color: rgba(0, 229, 255, 0.3);
+      background: rgba(0, 229, 255, 0.04);
+    }
+
+    .ipc-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    /* ========================================
+       SPONSORS
+    ======================================== */
+    #sponsors {
+      background: #080C18;
+      padding: 4rem 0;
+    }
+
+    .sponsors-inner {
+      text-align: center;
+    }
+
+    .sponsors-inner h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .sponsors-inner p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .sponsor-logo-strip {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .sponsor-logo-box {
+      padding: 1.25rem 2rem;
+      border-radius: var(--radius);
+      background: rgba(13, 21, 38, 0.8);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: var(--transition);
+    }
+
+    .sponsor-logo-box:hover {
+      border-color: rgba(0, 229, 255, 0.3);
+      color: var(--text);
+    }
+
+    .sponsor-logo-box i { font-size: 1.5rem; color: var(--blue); }
+
+    /* ========================================
+       FOOTER
+    ======================================== */
+    footer {
+      background: #050810;
+      border-top: 1px solid var(--border);
+      padding: 3rem 0 2rem;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    @media (min-width: 640px) {
+      .footer-grid { grid-template-columns: 1.5fr 1fr 1fr; }
+    }
+
+    .footer-brand .nav-logo {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+      display: inline-block;
+    }
+
+    .footer-brand p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 280px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+
+    .footer-social a:hover {
+      background: rgba(41,121,255,0.1);
+      border-color: rgba(41,121,255,0.4);
+      color: var(--blue);
+    }
+
+    .footer-col h4 {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .footer-col ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-col ul a {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .footer-col ul a:hover { color: var(--cyan); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-bottom p {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer-bottom a { color: var(--blue); transition: var(--transition); }
+    .footer-bottom a:hover { color: var(--cyan); }
+
+    /* ========================================
+       WAVE DIVIDER
+    ======================================== */
+    .wave-top, .wave-bottom { line-height: 0; overflow: hidden; }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVBAR
+  ============================================================ -->
+  <nav id="navbar">
+    <div class="container">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo">MIDHEM<span> 2026</span></a>
+
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#cfp">Call for Papers</a></li>
+          <li><a href="#dates">Dates</a></li>
+          <li><a href="#organizers">Organizers</a></li>
+        </ul>
+
+        <a href="#" class="btn btn-primary btn-sm nav-cta">
+          <i class="fa-solid fa-paper-plane"></i> Submit Paper
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#speakers" class="mobile-link">Speakers</a>
+        <a href="#schedule" class="mobile-link">Schedule</a>
+        <a href="#cfp" class="mobile-link">Call for Papers</a>
+        <a href="#dates" class="mobile-link">Dates</a>
+        <a href="#organizers" class="mobile-link">Organizers</a>
+        <a href="#" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-paper-plane"></i> Submit Paper
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="hero-overlay"></div>
+
+    <div class="hero-content">
+      <div class="hero-badge fade-in">
+        <i class="fa-solid fa-satellite"></i>
+        IEEE ICIP 2026 Workshop &nbsp;·&nbsp; Tampere, Finland
+      </div>
+
+      <h1 class="hero-title fade-in delay-1">
+        Mining Imaging Data for Hydrological and Environmental Modelling
+      </h1>
+
+      <p class="hero-tagline fade-in delay-2">
+        Bridging <strong>Earth Observation</strong>, <strong>Computer Vision</strong> &amp;
+        <strong>Environmental Modeling</strong>
+      </p>
+
+      <div class="hero-actions fade-in delay-3">
+        <a href="#" class="btn btn-primary">
+          Submit Your Paper <i class="fa-solid fa-arrow-right"></i>
+        </a>
+        <a href="#about" class="btn btn-outline">
+          Learn More <i class="fa-solid fa-arrow-down"></i>
+        </a>
+      </div>
+
+      <div class="countdown-wrapper fade-in delay-4">
+        <p class="countdown-label">
+          <i class="fa-regular fa-clock"></i> &nbsp; Submission Deadline Countdown
+        </p>
+        <div class="countdown" id="heroCountdown">
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cd-days">--</span>
+            <span class="countdown-unit-label">Days</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cd-hours">--</span>
+            <span class="countdown-unit-label">Hours</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cd-mins">--</span>
+            <span class="countdown-unit-label">Min</span>
+          </div>
+          <span class="countdown-sep">:</span>
+          <div class="countdown-unit">
+            <span class="countdown-val" id="cd-secs">--</span>
+            <span class="countdown-unit-label">Sec</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <i class="fa-solid fa-chevron-down"></i>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- Wave down -->
+  <div class="wave-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 60" preserveAspectRatio="none" style="height:60px;width:100%;">
+      <path fill="#080C18" d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       ABOUT
+  ============================================================ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label"><i class="fa-solid fa-earth-americas"></i> &nbsp; About</p>
+        <h2 class="section-title">What is MIDHEM?</h2>
+        <p class="section-subtitle">A half-day workshop at the intersection of remote sensing, deep learning, and environmental science.</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-text fade-in">
+          <p>
+            MIDHEM brings together researchers and practitioners working at the intersection of
+            image processing, remote sensing, and environmental sciences. The workshop addresses
+            the growing need for advanced imaging and AI techniques to monitor, model, and
+            predict hydrological and environmental phenomena — from flood mapping to glacier
+            dynamics and water-quality assessment.
+          </p>
+          <p>
+            Building on the rich heritage of Earth Observation satellites (Sentinel, Landsat,
+            MODIS) and the rapid advances in deep learning, large language models (LLMs), and
+            multi-modal fusion, MIDHEM fosters cross-disciplinary dialogue between the image
+            processing community and environmental scientists.
+          </p>
+          <p>
+            The workshop welcomes contributions on novel methods, benchmark datasets, open-data
+            initiatives, and real-world applications that demonstrate the power of imaging data
+            in hydrological and environmental modelling.
+          </p>
+
+          <div class="stat-cards fade-in delay-1">
+            <div class="stat-card">
+              <i class="fa-regular fa-clock"></i>
+              <div class="stat-val">Half-Day</div>
+              <div class="stat-label">Workshop Duration</div>
+            </div>
+            <div class="stat-card">
+              <i class="fa-solid fa-users"></i>
+              <div class="stat-val">30–40</div>
+              <div class="stat-label">Attendees</div>
+            </div>
+            <div class="stat-card">
+              <i class="fa-brands fa-book-open-reader"></i>
+              <div class="stat-val">IEEExplore</div>
+              <div class="stat-label">Proceedings</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-tags-section fade-in delay-2">
+          <h4><i class="fa-solid fa-tags"></i> &nbsp; Research Topics</h4>
+          <div class="topic-tags">
+            <span class="topic-tag">Remote Sensing</span>
+            <span class="topic-tag">Hydrology</span>
+            <span class="topic-tag">Deep Learning</span>
+            <span class="topic-tag">LLMs</span>
+            <span class="topic-tag">Multi-modal Fusion</span>
+            <span class="topic-tag">SAR Imagery</span>
+            <span class="topic-tag">Optical Imaging</span>
+            <span class="topic-tag">Climate Change</span>
+            <span class="topic-tag">Super-Resolution</span>
+            <span class="topic-tag">Flood Mapping</span>
+            <span class="topic-tag">Glacier Monitoring</span>
+            <span class="topic-tag">Water Quality</span>
+            <span class="topic-tag">Semantic Segmentation</span>
+            <span class="topic-tag">Change Detection</span>
+            <span class="topic-tag">Foundation Models</span>
+            <span class="topic-tag">Open Data</span>
+            <span class="topic-tag">Digital Twins</span>
+            <span class="topic-tag">Urban Flooding</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SPEAKERS
+  ============================================================ -->
+  <section id="speakers" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label"><i class="fa-solid fa-microphone-lines"></i> &nbsp; Invited Speakers</p>
+        <h2 class="section-title">Keynote &amp; Invited Talks</h2>
+        <p class="section-subtitle">World-class experts bridging Earth Observation and environmental AI. Full lineup to be announced.</p>
+      </div>
+
+      <div class="speakers-grid">
+        <!-- Keynote placeholder -->
+        <div class="speaker-card keynote glass-card fade-in">
+          <div class="speaker-keynote-badge">
+            <span class="badge badge-blue"><i class="fa-solid fa-star"></i> Keynote · 45 min</span>
+          </div>
+          <div class="speaker-avatar">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <h3 class="speaker-name">To Be Announced</h3>
+          <p class="speaker-affiliation">Affiliation TBD</p>
+          <p class="speaker-country">🌍</p>
+          <p class="speaker-talk">"Title of Keynote Talk — TBA"</p>
+          <span class="badge badge-gold"><i class="fa-solid fa-award"></i> Digital Water Flagship</span>
+        </div>
+
+        <!-- Invited speaker placeholders -->
+        <div class="speaker-card glass-card fade-in delay-1">
+          <div class="speaker-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h3 class="speaker-name">Invited Speaker</h3>
+          <p class="speaker-affiliation">Institution TBD</p>
+          <p class="speaker-country">🌍</p>
+          <p class="speaker-talk">"Invited Talk Title — To Be Announced"</p>
+          <span class="speaker-link"><i class="fa-solid fa-globe"></i> Website TBA</span>
+        </div>
+
+        <div class="speaker-card glass-card fade-in delay-2">
+          <div class="speaker-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h3 class="speaker-name">Invited Speaker</h3>
+          <p class="speaker-affiliation">Institution TBD</p>
+          <p class="speaker-country">🌍</p>
+          <p class="speaker-talk">"Invited Talk Title — To Be Announced"</p>
+          <span class="speaker-link"><i class="fa-solid fa-globe"></i> Website TBA</span>
+        </div>
+
+        <div class="speaker-card glass-card fade-in delay-3">
+          <div class="speaker-avatar">
+            <i class="fa-solid fa-user"></i>
+          </div>
+          <h3 class="speaker-name">Invited Speaker</h3>
+          <p class="speaker-affiliation">Institution TBD</p>
+          <p class="speaker-country">🌍</p>
+          <p class="speaker-talk">"Invited Talk Title — To Be Announced"</p>
+          <span class="speaker-link"><i class="fa-solid fa-globe"></i> Website TBA</span>
+        </div>
+      </div>
+
+      <div class="keynote-note fade-in">
+        <i class="fa-solid fa-star"></i>
+        The keynote talk is sponsored by the <strong>Digital Water Flagship</strong> initiative (Finland Research Council).
+        Full speaker lineup will be announced following acceptance notifications.
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave divider -->
+  <div class="wave-bottom">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;width:100%;background:#080C18;">
+      <path fill="#0A0F1E" d="M0,25 C480,50 960,0 1440,25 L1440,50 L0,50 Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       SCHEDULE
+  ============================================================ -->
+  <section id="schedule" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label"><i class="fa-regular fa-calendar"></i> &nbsp; Program</p>
+        <h2 class="section-title">Workshop Schedule</h2>
+        <p class="section-subtitle">A half-day program with keynote, oral presentations, poster session, and best paper award.</p>
+      </div>
+
+      <p class="schedule-tba fade-in">
+        <span class="badge badge-gray"><i class="fa-solid fa-clock-rotate-left"></i> &nbsp; Full schedule TBA after notifications</span>
+      </p>
+
+      <div class="timeline">
+        <!-- Keynote -->
+        <div class="timeline-item fade-in">
+          <div class="tl-time">09:00 – 09:45</div>
+          <div class="tl-dot tl-dot-keynote"></div>
+          <div class="tl-content glass-card">
+            <p class="tl-session-type tl-type-keynote"><i class="fa-solid fa-star"></i> Keynote</p>
+            <h4 class="tl-title">Invited Keynote Talk</h4>
+            <p class="tl-desc">45-minute keynote address — title and speaker TBA. Sponsored by Digital Water Flagship.</p>
+          </div>
+        </div>
+
+        <!-- Oral session -->
+        <div class="timeline-item fade-in delay-1">
+          <div class="tl-time">09:45 – 11:00</div>
+          <div class="tl-dot tl-dot-oral"></div>
+          <div class="tl-content glass-card">
+            <p class="tl-session-type tl-type-oral"><i class="fa-solid fa-chalkboard-user"></i> Oral Session</p>
+            <h4 class="tl-title">Oral Paper Presentations</h4>
+            <p class="tl-desc">~4 oral presentations, 15–20 minutes each including Q&amp;A. Accepted papers from MIDHEM call for papers.</p>
+          </div>
+        </div>
+
+        <!-- Break -->
+        <div class="timeline-item fade-in delay-2">
+          <div class="tl-time">11:00 – 11:15</div>
+          <div class="tl-dot tl-dot-break"></div>
+          <div class="tl-content glass-card">
+            <p class="tl-session-type tl-type-break"><i class="fa-solid fa-mug-hot"></i> Break</p>
+            <h4 class="tl-title">Coffee Break</h4>
+            <p class="tl-desc">Networking and refreshment break.</p>
+          </div>
+        </div>
+
+        <!-- Poster session -->
+        <div class="timeline-item fade-in delay-3">
+          <div class="tl-time">11:15 – 12:15</div>
+          <div class="tl-dot tl-dot-poster"></div>
+          <div class="tl-content glass-card">
+            <p class="tl-session-type tl-type-poster"><i class="fa-solid fa-diagram-project"></i> Poster Session</p>
+            <h4 class="tl-title">Poster Presentations</h4>
+            <p class="tl-desc">Flash talks: 5 minutes each followed by poster viewing. Interactive Q&amp;A with authors.</p>
+          </div>
+        </div>
+
+        <!-- Best paper award -->
+        <div class="timeline-item fade-in delay-4">
+          <div class="tl-time">12:15 – 12:30</div>
+          <div class="tl-dot tl-dot-award"></div>
+          <div class="tl-content glass-card">
+            <p class="tl-session-type tl-type-award"><i class="fa-solid fa-trophy"></i> Award &amp; Closing</p>
+            <h4 class="tl-title">Best Paper Award &amp; Closing Remarks</h4>
+            <p class="tl-desc">Announcement of Best Paper Award and closing discussion on future directions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave divider -->
+  <div class="wave-top" style="background:#080C18;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 50" preserveAspectRatio="none" style="height:50px;width:100%;background:#0A0F1E;">
+      <path fill="#080C18" d="M0,25 C480,0 960,50 1440,25 L1440,0 L0,0 Z"/>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       CALL FOR PAPERS
+  ============================================================ -->
+  <section id="cfp" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label"><i class="fa-solid fa-file-lines"></i> &nbsp; Call for Papers</p>
+        <h2 class="section-title">Submit Your Research</h2>
+        <p class="section-subtitle">We invite contributions on methods, applications, and open-data initiatives at the frontier of imaging and environmental science.</p>
+      </div>
+
+      <div class="cfp-grid">
+        <div class="cfp-topics fade-in">
+          <h3><i class="fa-solid fa-list-check"></i> &nbsp; Topics of Interest</h3>
+
+          <div class="topic-group">
+            <h4>Methods &amp; Models</h4>
+            <ul class="topic-list">
+              <li><i class="fa-solid fa-circle-check"></i> Deep learning for remote sensing image analysis</li>
+              <li><i class="fa-solid fa-circle-check"></i> Multi-modal and multi-temporal data fusion (SAR + Optical)</li>
+              <li><i class="fa-solid fa-circle-check"></i> Foundation models and LLMs for geospatial data</li>
+              <li><i class="fa-solid fa-circle-check"></i> Super-resolution and image reconstruction techniques</li>
+              <li><i class="fa-solid fa-circle-check"></i> Generative models for data augmentation and simulation</li>
+              <li><i class="fa-solid fa-circle-check"></i> Self-supervised and unsupervised learning methods</li>
+              <li><i class="fa-solid fa-circle-check"></i> Uncertainty quantification in environmental predictions</li>
+            </ul>
+          </div>
+
+          <div class="topic-group">
+            <h4>Applications</h4>
+            <ul class="topic-list">
+              <li><i class="fa-solid fa-circle-check"></i> Flood detection, mapping, and risk assessment</li>
+              <li><i class="fa-solid fa-circle-check"></i> Glacier and sea-ice monitoring from satellite data</li>
+              <li><i class="fa-solid fa-circle-check"></i> Water body extraction and water quality estimation</li>
+              <li><i class="fa-solid fa-circle-check"></i> Vegetation and land-cover change detection</li>
+              <li><i class="fa-solid fa-circle-check"></i> Urban heat island and climate adaptation</li>
+              <li><i class="fa-solid fa-circle-check"></i> Precipitation and soil moisture estimation</li>
+              <li><i class="fa-solid fa-circle-check"></i> Digital twin environments for water cycle modelling</li>
+            </ul>
+          </div>
+
+          <div class="topic-group">
+            <h4>Open Data &amp; Benchmarks</h4>
+            <ul class="topic-list">
+              <li><i class="fa-solid fa-circle-check"></i> Novel benchmark datasets for hydrological imaging</li>
+              <li><i class="fa-solid fa-circle-check"></i> Open-source tools and reproducible pipelines</li>
+              <li><i class="fa-solid fa-circle-check"></i> Large-scale annotation efforts and crowdsourcing</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fade-in delay-2">
+          <div class="submission-card glass-card">
+            <h3><i class="fa-solid fa-upload"></i> Submission Guidelines</h3>
+
+            <div class="sub-rule">
+              <div class="sub-rule-icon"><i class="fa-regular fa-file-lines"></i></div>
+              <div class="sub-rule-text">
+                <strong>Paper Length</strong>
+                <span>4 pages maximum (excluding references), following IEEE ICIP 2026 paper template</span>
+              </div>
+            </div>
+
+            <div class="sub-rule">
+              <div class="sub-rule-icon"><i class="fa-solid fa-palette"></i></div>
+              <div class="sub-rule-text">
+                <strong>Format</strong>
+                <span>IEEE two-column format; LaTeX and Word templates available via IEEE Author Center</span>
+              </div>
+            </div>
+
+            <div class="sub-rule">
+              <div class="sub-rule-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="sub-rule-text">
+                <strong>Double-Blind Review</strong>
+                <span>Submissions must be anonymized; do not include author names or affiliations</span>
+              </div>
+            </div>
+
+            <div class="sub-rule">
+              <div class="sub-rule-icon"><i class="fa-brands fa-github"></i></div>
+              <div class="sub-rule-text">
+                <strong>Proceedings</strong>
+                <span>Accepted papers will be published in IEEExplore as part of ICIP 2026 proceedings</span>
+              </div>
+            </div>
+
+            <div class="sub-rule">
+              <div class="sub-rule-icon"><i class="fa-solid fa-user-check"></i></div>
+              <div class="sub-rule-text">
+                <strong>Presentation</strong>
+                <span>At least one author must register and present at the workshop in person</span>
+              </div>
+            </div>
+
+            <a href="#" class="btn btn-primary" style="width:100%; justify-content:center; margin-top:0.5rem;">
+              <i class="fa-solid fa-paper-plane"></i> Submit via CMT
+            </a>
+
+            <p style="font-size:0.75rem;color:var(--text-muted);text-align:center;margin-top:0.75rem;">
+              CMT submission system link will be available shortly
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       IMPORTANT DATES
+  ============================================================ -->
+  <section id="dates" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label"><i class="fa-regular fa-calendar-days"></i> &nbsp; Important Dates</p>
+        <h2 class="section-title">Key Deadlines</h2>
+        <p class="section-subtitle">Mark your calendar. All deadlines are 23:59 AoE (Anywhere on Earth).</p>
+      </div>
+
+      <div class="dates-grid">
+        <!-- Submission Deadline -->
+        <div class="date-card blue glass-card fade-in">
+          <div class="date-card-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+          <div class="date-card-label">Deadline</div>
+          <h3 class="date-card-title">Paper Submission</h3>
+          <div class="date-card-date" id="deadline-date">June 15, 2026</div>
+          <span class="badge badge-blue"><i class="fa-solid fa-circle" style="font-size:0.5rem"></i> Open</span>
+          <div class="mini-countdown" id="miniCountdown">
+            <div class="mini-cd-unit">
+              <span class="mini-cd-val" id="mcd-days">--</span>
+              <span class="mini-cd-label">d</span>
+            </div>
+            <span class="mini-cd-sep">:</span>
+            <div class="mini-cd-unit">
+              <span class="mini-cd-val" id="mcd-hours">--</span>
+              <span class="mini-cd-label">h</span>
+            </div>
+            <span class="mini-cd-sep">:</span>
+            <div class="mini-cd-unit">
+              <span class="mini-cd-val" id="mcd-mins">--</span>
+              <span class="mini-cd-label">m</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Notification -->
+        <div class="date-card cyan glass-card fade-in delay-1">
+          <div class="date-card-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <div class="date-card-label">Notification</div>
+          <h3 class="date-card-title">Acceptance Notification</h3>
+          <div class="date-card-date">TBD</div>
+          <span class="badge badge-gray"><i class="fa-solid fa-hourglass-half"></i> Upcoming</span>
+        </div>
+
+        <!-- Camera Ready -->
+        <div class="date-card teal glass-card fade-in delay-2">
+          <div class="date-card-icon"><i class="fa-solid fa-camera"></i></div>
+          <div class="date-card-label">Camera-Ready</div>
+          <h3 class="date-card-title">Final Paper Submission</h3>
+          <div class="date-card-date">TBD</div>
+          <span class="badge badge-gray"><i class="fa-solid fa-hourglass-half"></i> TBD</span>
+        </div>
+
+        <!-- Workshop Day -->
+        <div class="date-card gold glass-card fade-in delay-3">
+          <div class="date-card-icon"><i class="fa-solid fa-flag-checkered"></i></div>
+          <div class="date-card-label">Event</div>
+          <h3 class="date-card-title">MIDHEM Workshop Day</h3>
+          <div class="date-card-date">Sep 13–17, 2026</div>
+          <span class="badge badge-gold"><i class="fa-solid fa-location-dot"></i> Tampere, Finland</span>
+          <p style="font-size:0.78rem;color:var(--text-muted);margin-top:0.75rem;">
+            Within IEEE ICIP 2026 (Sep 13–17, 2026)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       ORGANIZERS
+  ============================================================ -->
+  <section id="organizers" class="section">
+    <div class="container">
+      <div class="section-header fade-in">
+        <p class="section-label"><i class="fa-solid fa-people-group"></i> &nbsp; Organization</p>
+        <h2 class="section-title">Workshop Organizers</h2>
+        <p class="section-subtitle">An international team of researchers with expertise spanning image processing, AI, and environmental science.</p>
+      </div>
+
+      <div class="org-grid">
+        <!-- Oussalah -->
+        <div class="org-card glass-card fade-in">
+          <div class="org-avatar">MO</div>
+          <div class="org-info">
+            <h3 class="org-name">Mourad Oussalah</h3>
+            <p class="org-affiliation">
+              <i class="fa-solid fa-university" style="color:var(--blue);font-size:0.75rem;"></i>
+              University of Oulu, Finland 🇫🇮
+            </p>
+            <a href="mailto:mourad.oussalah@oulu.fi" class="org-email">
+              <i class="fa-solid fa-envelope"></i> mourad.oussalah@oulu.fi
+            </a>
+          </div>
+        </div>
+
+        <!-- Mogren -->
+        <div class="org-card glass-card fade-in delay-1">
+          <div class="org-avatar">OM</div>
+          <div class="org-info">
+            <h3 class="org-name">Olof Mogren</h3>
+            <p class="org-affiliation">
+              <i class="fa-solid fa-flask" style="color:var(--blue);font-size:0.75rem;"></i>
+              RISE Research Institute of Sweden 🇸🇪
+            </p>
+            <a href="mailto:Olof.Mogren@ri.se" class="org-email">
+              <i class="fa-solid fa-envelope"></i> Olof.Mogren@ri.se
+            </a>
+          </div>
+        </div>
+
+        <!-- Heikkonen -->
+        <div class="org-card glass-card fade-in delay-2">
+          <div class="org-avatar">JH</div>
+          <div class="org-info">
+            <h3 class="org-name">Jukka Heikkonen</h3>
+            <p class="org-affiliation">
+              <i class="fa-solid fa-university" style="color:var(--blue);font-size:0.75rem;"></i>
+              University of Turku, Finland 🇫🇮
+            </p>
+            <a href="mailto:jukhei@utu.fi" class="org-email">
+              <i class="fa-solid fa-envelope"></i> jukhei@utu.fi
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- IPC Members -->
+      <div class="ipc-section fade-in">
+        <h3><i class="fa-solid fa-users-rectangle"></i> International Program Committee</h3>
+        <p class="ipc-subtitle">13 members from leading institutions worldwide</p>
+
+        <div class="ipc-grid">
+          <div class="ipc-card">
+            <div class="ipc-name">Sofoklis Kakouros</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Mehrdad Rostami</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Alexis Pirinen</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Timo Knuutila</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Carlos Gonzales Inca</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Moncef Gabbouj</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Harri Kartinen</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Kallasvuo Meri</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Bjorg Risebrobakken</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Khalifa Djemel</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Diego Marcos</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Suvojit Acharjee</div>
+          </div>
+          <div class="ipc-card">
+            <div class="ipc-name">Sheli Sinha Chaudhuri</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SPONSORS
+  ============================================================ -->
+  <section id="sponsors">
+    <div class="container">
+      <div class="sponsors-inner fade-in">
+        <p class="section-label" style="text-align:center;"><i class="fa-solid fa-handshake"></i> &nbsp; Supported By</p>
+        <h2>Institutional Support</h2>
+        <p>MIDHEM is proudly supported by leading research institutions and initiatives.</p>
+
+        <div class="sponsor-logo-strip">
+          <div class="sponsor-logo-box">
+            <i class="fa-solid fa-water"></i>
+            <div>
+              <div style="color:var(--text);font-size:0.9rem;">Digital Water Flagship</div>
+              <div style="font-weight:400;font-size:0.75rem;">Finland Research Council</div>
+            </div>
+          </div>
+          <div class="sponsor-logo-box">
+            <i class="fa-solid fa-microchip"></i>
+            <div>
+              <div style="color:var(--text);font-size:0.9rem;">IEEE Signal Processing Society</div>
+              <div style="font-weight:400;font-size:0.75rem;">IEEE ICIP 2026</div>
+            </div>
+          </div>
+          <div class="sponsor-logo-box">
+            <i class="fa-solid fa-globe"></i>
+            <div>
+              <div style="color:var(--text);font-size:0.9rem;">Your Organization</div>
+              <div style="font-weight:400;font-size:0.75rem;">Sponsor placeholder</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#hero" class="nav-logo">MIDHEM<span> 2026</span></a>
+          <p>
+            Mining Imaging Data for Hydrological and Environmental Modelling.<br />
+            In conjunction with <strong style="color:var(--text);">IEEE ICIP 2026</strong>,
+            Tampere, Finland.
+          </p>
+          <div class="footer-social">
+            <a href="mailto:mourad.oussalah@oulu.fi" title="Contact Organizers">
+              <i class="fa-solid fa-envelope"></i>
+            </a>
+            <a href="https://github.com/midhem-icip2026" title="GitHub" target="_blank" rel="noopener">
+              <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.ieee.org/conferences/icip/" title="IEEE ICIP" target="_blank" rel="noopener">
+              <i class="fa-solid fa-link"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#about">About MIDHEM</a></li>
+            <li><a href="#speakers">Invited Speakers</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#cfp">Call for Papers</a></li>
+            <li><a href="#dates">Important Dates</a></li>
+            <li><a href="#organizers">Organizers</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul>
+            <li><a href="#" target="_blank" rel="noopener">IEEE ICIP 2026</a></li>
+            <li><a href="#" target="_blank" rel="noopener">IEEE Author Center</a></li>
+            <li><a href="#" target="_blank" rel="noopener">CMT Submission</a></li>
+            <li><a href="#" target="_blank" rel="noopener">IEEExplore</a></li>
+            <li><a href="mailto:mourad.oussalah@oulu.fi">Contact Us</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 MIDHEM Workshop. All rights reserved.</p>
+        <p>Built for <a href="https://2026.ieeeicip.org/" target="_blank" rel="noopener">IEEE ICIP 2026</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    // ========================================================
+    // 1. CANVAS PARTICLE NETWORK
+    // ========================================================
+    function initParticles() {
+      const canvas = document.getElementById('hero-canvas');
+      const ctx = canvas.getContext('2d');
+      let particles = [];
+      const NUM = 80;
+      const MAX_DIST = 150;
+      let W, H;
+
+      function resize() {
+        W = canvas.width = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+      }
+
+      class Particle {
+        constructor() {
+          this.reset();
+        }
+        reset() {
+          this.x = Math.random() * W;
+          this.y = Math.random() * H;
+          this.vx = (Math.random() - 0.5) * 0.4;
+          this.vy = (Math.random() - 0.5) * 0.4;
+          this.r = Math.random() * 2 + 1;
+          this.alpha = Math.random() * 0.5 + 0.2;
+          this.hue = Math.random() > 0.5 ? '41,121,255' : '0,229,255';
+        }
+        update() {
+          this.x += this.vx;
+          this.y += this.vy;
+          if (this.x < 0 || this.x > W) this.vx *= -1;
+          if (this.y < 0 || this.y > H) this.vy *= -1;
+        }
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${this.hue},${this.alpha})`;
+          ctx.fill();
+        }
+      }
+
+      function init() {
+        resize();
+        particles = [];
+        for (let i = 0; i < NUM; i++) particles.push(new Particle());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, W, H);
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < MAX_DIST) {
+              const opacity = (1 - dist / MAX_DIST) * 0.25;
+              const grad = ctx.createLinearGradient(particles[i].x, particles[i].y, particles[j].x, particles[j].y);
+              grad.addColorStop(0, `rgba(41,121,255,${opacity})`);
+              grad.addColorStop(1, `rgba(0,229,255,${opacity})`);
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = grad;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw and update particles
+        particles.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+      }
+
+      window.addEventListener('resize', init);
+      init();
+      animate();
+    }
+
+    // ========================================================
+    // 2. SCROLL ANIMATIONS (IntersectionObserver)
+    // ========================================================
+    function initScrollAnimations() {
+      const els = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      els.forEach(el => observer.observe(el));
+    }
+
+    // ========================================================
+    // 3. NAVBAR SCROLL EFFECT
+    // ========================================================
+    function initNavbar() {
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 60) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+      }, { passive: true });
+    }
+
+    // ========================================================
+    // 4. COUNTDOWN TIMER
+    // ========================================================
+    function initCountdown(targetDate) {
+      function pad(n) { return String(n).padStart(2, '0'); }
+
+      function tick() {
+        const now = Date.now();
+        const diff = targetDate - now;
+
+        if (diff <= 0) {
+          ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = '00';
+          });
+          ['mcd-days','mcd-hours','mcd-mins'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.textContent = '00';
+          });
+          return;
+        }
+
+        const days  = Math.floor(diff / 86400000);
+        const hours = Math.floor((diff % 86400000) / 3600000);
+        const mins  = Math.floor((diff % 3600000) / 60000);
+        const secs  = Math.floor((diff % 60000) / 1000);
+
+        const cdDays  = document.getElementById('cd-days');
+        const cdHours = document.getElementById('cd-hours');
+        const cdMins  = document.getElementById('cd-mins');
+        const cdSecs  = document.getElementById('cd-secs');
+
+        if (cdDays)  cdDays.textContent  = pad(days);
+        if (cdHours) cdHours.textContent = pad(hours);
+        if (cdMins)  cdMins.textContent  = pad(mins);
+        if (cdSecs)  cdSecs.textContent  = pad(secs);
+
+        const mcdDays  = document.getElementById('mcd-days');
+        const mcdHours = document.getElementById('mcd-hours');
+        const mcdMins  = document.getElementById('mcd-mins');
+
+        if (mcdDays)  mcdDays.textContent  = pad(days);
+        if (mcdHours) mcdHours.textContent = pad(hours);
+        if (mcdMins)  mcdMins.textContent  = pad(mins);
+      }
+
+      tick();
+      setInterval(tick, 1000);
+    }
+
+    // ========================================================
+    // 5. MOBILE MENU
+    // ========================================================
+    function initMobileMenu() {
+      const btn = document.getElementById('hamburger');
+      const menu = document.getElementById('mobileMenu');
+
+      btn.addEventListener('click', () => {
+        btn.classList.toggle('open');
+        menu.classList.toggle('open');
+      });
+
+      // Close on link click
+      menu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          btn.classList.remove('open');
+          menu.classList.remove('open');
+        });
+      });
+    }
+
+    // ========================================================
+    // INIT ALL
+    // ========================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      initParticles();
+      initScrollAnimations();
+      initNavbar();
+      // Submission deadline: June 15, 2026 23:59 AoE (UTC-12)
+      initCountdown(new Date('2026-06-16T11:59:00Z').getTime());
+      initMobileMenu();
+    });
+  </script>
+</body>
+</html>
