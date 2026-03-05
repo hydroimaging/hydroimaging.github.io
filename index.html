@@ -253,13 +253,12 @@
     .hero-video-wrap {
       position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
     }
-    .hero-video-wrap video {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100vw; height: 56.25vw;
-      min-width: 177.78vh; min-height: 100vh;
-      object-fit: cover; pointer-events: none;
+    .hero-slide {
+      position: absolute; inset: 0;
+      background-size: cover; background-position: center;
+      opacity: 0; transition: opacity 1.2s ease-in-out;
     }
+    .hero-slide.active { opacity: 1; }
     .hero-bg-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(180deg, rgba(10,15,30,0.55) 0%, rgba(10,15,30,0.30) 50%, rgba(10,15,30,0.70) 100%);
@@ -871,11 +870,7 @@
      HERO
 ============================================================ -->
 <section id="hero">
-  <div class="hero-video-wrap" aria-hidden="true">
-    <video autoplay muted loop playsinline>
-      <source src="assets/hero-video.mp4" type="video/mp4">
-    </video>
-  </div>
+  <div class="hero-video-wrap" id="heroSlideshow" aria-hidden="true"></div>
   <div class="hero-bg-overlay"></div>
   <canvas id="hero-canvas"></canvas>
   <div class="hero-overlay"></div>
@@ -1765,7 +1760,29 @@
     // May 13, 2026 23:59 AoE = May 14, 2026 11:59 UTC
     initCountdown(new Date('2026-05-14T11:59:00Z').getTime());
     initMobileMenu();
+    initSlideshow();
   });
+
+  function initSlideshow() {
+    const imgs = [
+      't1.jpg','t2.jpg','t3.jpg','t4.jpg','t5.jpg','t6.jpg','t7.jpg',
+      't8.jpg','t10.jpg','t11.jpg','t12.jpg','t13.jpg','t14.jpg','t15.jpg'
+    ];
+    const wrap = document.getElementById('heroSlideshow');
+    imgs.forEach((name, i) => {
+      const el = document.createElement('div');
+      el.className = 'hero-slide' + (i === 0 ? ' active' : '');
+      el.style.backgroundImage = "url('assets/tampere/" + name + "')";
+      wrap.appendChild(el);
+    });
+    let cur = 0;
+    setInterval(() => {
+      const slides = wrap.children;
+      slides[cur].classList.remove('active');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('active');
+    }, 4000);
+  }
 </script>
 </body>
 </html>
