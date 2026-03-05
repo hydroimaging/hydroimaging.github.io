@@ -253,12 +253,12 @@
     .hero-video-wrap {
       position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none;
     }
-    .hero-video-wrap iframe {
+    .hero-video-wrap video {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
       width: 100vw; height: 56.25vw;
       min-width: 177.78vh; min-height: 100vh;
-      border: none; pointer-events: none;
+      object-fit: cover; pointer-events: none;
     }
     .hero-bg-overlay {
       position: absolute; inset: 0; z-index: 1;
@@ -872,12 +872,9 @@
 ============================================================ -->
 <section id="hero">
   <div class="hero-video-wrap" aria-hidden="true">
-    <iframe
-      src="https://www.youtube.com/embed/ObD0WSkty8M?autoplay=1&mute=1&loop=1&playlist=ObD0WSkty8M&controls=0&modestbranding=1&showinfo=0&playsinline=1&rel=0"
-      frameborder="0"
-      allow="autoplay; encrypted-media"
-      title="Tampere city background video">
-    </iframe>
+    <video autoplay muted loop playsinline>
+      <source src="assets/hero-video.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="hero-bg-overlay"></div>
   <canvas id="hero-canvas"></canvas>
@@ -1326,7 +1323,7 @@
         <div class="dc-icon"><i class="fa-solid fa-pen-to-square"></i></div>
         <div class="dc-label">Deadline</div>
         <h3 class="dc-title">Paper Submission</h3>
-        <div class="dc-date">June 15, 2026</div>
+        <div class="dc-date">May 13, 2026</div>
         <span class="badge badge-blue"><i class="fa-solid fa-circle" style="font-size:0.45rem"></i>&nbsp; Open</span>
         <div class="mini-cd" id="miniCd">
           <div class="mcd-unit">
@@ -1431,7 +1428,7 @@
           <img class="org-photo" src="assets/jukka.jpg" alt="Jukka Heikkonen" loading="lazy" />
           <span class="org-flag">🇫🇮</span>
         </div>
-        <div class="org-role">Professor</div>
+        <div class="org-role">Full Professor</div>
         <h3 class="org-name">Jukka Heikkonen</h3>
         <p class="org-affil">University of Turku, Finland</p>
         <p class="org-bio">
@@ -1765,8 +1762,8 @@
     initParticles();
     initScrollAnim();
     initNavbar();
-    // June 15, 2026 23:59 AoE = June 16, 2026 11:59 UTC
-    initCountdown(new Date('2026-06-16T11:59:00Z').getTime());
+    // May 13, 2026 23:59 AoE = May 14, 2026 11:59 UTC
+    initCountdown(new Date('2026-05-14T11:59:00Z').getTime());
     initMobileMenu();
   });
 </script>
