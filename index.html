@@ -477,22 +477,40 @@
       .imagery-strip { grid-template-columns: 1fr; }
     }
 
-    /* Topic tags */
+    /* About word cloud */
     .tags-block h4 {
       font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
       text-transform: uppercase; letter-spacing: 0.12em;
       color: var(--text-muted); margin-bottom: 1.2rem;
     }
-    .topic-tags { display: flex; flex-wrap: wrap; gap: 0.65rem; }
-    .tag {
-      padding: 0.5rem 1.1rem; border-radius: 999px; font-size: 0.88rem; font-weight: 500;
-      background: rgba(41,121,255,0.08); border: 1px solid rgba(41,121,255,0.2);
-      color: var(--text); cursor: default; transition: all 0.3s;
+    .wc-cloud {
+      position: relative; width: 100%; padding-bottom: 95%;
+      min-height: 320px;
     }
-    .tag:hover {
-      background: rgba(0,229,255,0.1); border-color: rgba(0,229,255,0.4);
-      color: var(--cyan); box-shadow: 0 0 14px rgba(0,229,255,0.18);
+    .wc-cloud-inner {
+      position: absolute; inset: 0; overflow: hidden;
     }
+    .wc-cloud-inner::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 50%, rgba(41,121,255,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 45% 40% at 25% 35%, rgba(0,229,255,0.05) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 75% 65%, rgba(0,191,165,0.05) 0%, transparent 65%);
+    }
+    .wc-w {
+      position: absolute; font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700; line-height: 1; white-space: nowrap; cursor: default;
+      transition: filter 0.25s, opacity 0.25s;
+      opacity: 0.82;
+      animation: wc-pulse var(--pd, 5s) ease-in-out var(--pp, 0s) infinite;
+    }
+    .wc-w:hover { opacity: 1; filter: brightness(1.4) drop-shadow(0 0 8px currentColor); z-index: 10; }
+    @keyframes wc-pulse {
+      0%, 100% { opacity: 0.82; }
+      50%       { opacity: 1; }
+    }
+    .wc-w.r90  { transform: rotate(90deg);  transform-origin: top left; }
+    .wc-w.rn90 { transform: rotate(-90deg); transform-origin: bottom left; }
 
     /* ============================================================
        SPEAKERS
@@ -677,88 +695,22 @@
     #cfp { background: var(--bg-alt); }
 
     .cfp-grid { display: grid; grid-template-columns: 1fr; gap: 2.5rem; }
-    @media (min-width: 1024px) { .cfp-grid { grid-template-columns: 1.35fr 1fr; } }
+    @media (min-width: 1024px) { .cfp-grid { grid-template-columns: 1.25fr 1fr; } }
 
-    /* Word cloud */
-    .cfp-topics { display: flex; flex-direction: column; }
-    .cfp-topics h3 { font-size: 1.2rem; margin-bottom: 0.6rem; color: var(--cyan); }
+    .cfp-topics h3 { font-size: 1.2rem; margin-bottom: 1.25rem; color: var(--cyan); }
 
-    .wc-legend {
-      display: flex; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 1.5rem;
-      font-family: 'JetBrains Mono', monospace; font-size: 0.7rem;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);
+    .topic-group { margin-bottom: 1.35rem; }
+    .topic-group h4 {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+      color: var(--blue); margin-bottom: 0.8rem;
     }
-    .wc-legend span { display: flex; align-items: center; gap: 0.4rem; }
-    .wc-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
-    .wc-dot.blue { background: var(--blue); }
-    .wc-dot.cyan { background: var(--cyan); }
-    .wc-dot.teal { background: var(--teal); }
-
-    .word-cloud-wrap {
-      flex: 1; background: var(--bg-card); border: 1px solid var(--border);
-      border-radius: 20px; padding: 1.75rem 1.5rem;
-      position: relative; overflow: hidden;
+    .topic-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .topic-list li {
+      display: flex; align-items: flex-start; gap: 0.7rem;
+      font-size: 0.98rem; color: var(--text-muted);
     }
-    .word-cloud-wrap::before {
-      content: ''; position: absolute; inset: 0; pointer-events: none;
-      background:
-        radial-gradient(ellipse 60% 50% at 30% 40%, rgba(41,121,255,0.07) 0%, transparent 70%),
-        radial-gradient(ellipse 50% 50% at 70% 60%, rgba(0,229,255,0.06) 0%, transparent 70%),
-        radial-gradient(ellipse 40% 40% at 50% 20%, rgba(0,191,165,0.05) 0%, transparent 70%);
-    }
-    .word-cloud {
-      display: flex; flex-wrap: wrap; gap: 0.65rem;
-      justify-content: center; align-items: center;
-      position: relative; z-index: 1;
-    }
-
-    @keyframes wc-float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-7px); }
-    }
-
-    .wc-tag {
-      display: inline-flex; align-items: center; gap: 0.35rem;
-      border-radius: 999px; font-weight: 600; cursor: default; white-space: nowrap;
-      animation: wc-float var(--dur, 4s) ease-in-out var(--delay, 0s) infinite;
-      transition: transform 0.25s, box-shadow 0.25s, filter 0.25s;
-    }
-    .wc-tag:hover {
-      transform: scale(1.15) translateY(-5px) !important;
-      filter: brightness(1.25);
-      animation-play-state: paused;
-      z-index: 5; position: relative;
-    }
-    .wc-xs { font-size: 0.78rem; padding: 0.28rem 0.85rem; }
-    .wc-sm { font-size: 0.92rem; padding: 0.36rem 1rem; }
-    .wc-md { font-size: 1.06rem; padding: 0.45rem 1.2rem; }
-    .wc-lg { font-size: 1.22rem; padding: 0.52rem 1.4rem; }
-    .wc-xl { font-size: 1.42rem; padding: 0.62rem 1.65rem; font-weight: 700; }
-
-    .wc-blue {
-      background: rgba(41,121,255,0.12); color: var(--blue);
-      border: 1.5px solid rgba(41,121,255,0.28);
-      box-shadow: 0 2px 14px rgba(41,121,255,0.08);
-    }
-    .wc-blue:hover  { box-shadow: 0 4px 28px rgba(41,121,255,0.38); }
-    .wc-cyan {
-      background: rgba(0,229,255,0.09); color: var(--cyan);
-      border: 1.5px solid rgba(0,229,255,0.24);
-      box-shadow: 0 2px 14px rgba(0,229,255,0.07);
-    }
-    .wc-cyan:hover  { box-shadow: 0 4px 28px rgba(0,229,255,0.36); }
-    .wc-teal {
-      background: rgba(0,191,165,0.09); color: var(--teal);
-      border: 1.5px solid rgba(0,191,165,0.24);
-      box-shadow: 0 2px 14px rgba(0,191,165,0.07);
-    }
-    .wc-teal:hover  { box-shadow: 0 4px 28px rgba(0,191,165,0.32); }
-    .wc-gold {
-      background: rgba(255,214,0,0.09); color: var(--gold);
-      border: 1.5px solid rgba(255,214,0,0.24);
-      box-shadow: 0 2px 14px rgba(255,214,0,0.07);
-    }
-    .wc-gold:hover  { box-shadow: 0 4px 28px rgba(255,214,0,0.32); }
+    .topic-list li i { color: var(--cyan); font-size: 0.72rem; margin-top: 0.38rem; flex-shrink: 0; }
 
     /* Submission card */
     .sub-card { padding: 2.1rem; border-radius: 16px; }
@@ -1179,25 +1131,53 @@
       <div class="fade-in d2">
         <div class="tags-block" style="margin-bottom:2.5rem;">
           <h4><i class="fa-solid fa-tags"></i>&nbsp; Research Topics</h4>
-          <div class="topic-tags">
-            <span class="tag">Remote Sensing</span>
-            <span class="tag">Hydrology</span>
-            <span class="tag">Deep Learning</span>
-            <span class="tag">LLMs &amp; VLMs</span>
-            <span class="tag">Multi-modal Fusion</span>
-            <span class="tag">SAR Imagery</span>
-            <span class="tag">Optical &amp; Radar</span>
-            <span class="tag">Climate Change</span>
-            <span class="tag">Super-Resolution</span>
-            <span class="tag">Flood Mapping</span>
-            <span class="tag">Glacier Monitoring</span>
-            <span class="tag">Water Quality</span>
-            <span class="tag">Semantic Segmentation</span>
-            <span class="tag">Change Detection</span>
-            <span class="tag">Foundation Models</span>
-            <span class="tag">Open Datasets</span>
-            <span class="tag">Urban Flooding</span>
-            <span class="tag">Phenology</span>
+          <div class="wc-cloud">
+            <div class="wc-cloud-inner">
+              <!-- row 1 — top band -->
+              <span class="wc-w" style="font-size:0.72rem;color:var(--text-muted);top:2%;left:28%;--pd:6s;--pp:0.3s">LLMs &amp; VLMs</span>
+              <span class="wc-w" style="font-size:0.68rem;color:var(--teal);top:1%;left:54%;--pd:7s;--pp:1.1s">Vegetation</span>
+              <span class="wc-w" style="font-size:0.7rem;color:var(--text-muted);top:3%;left:72%;--pd:5.5s;--pp:0.5s">Copernicus</span>
+
+              <!-- row 2 -->
+              <span class="wc-w" style="font-size:0.78rem;color:var(--gold);top:9%;left:4%;--pd:6.5s;--pp:0.8s">LiDAR</span>
+              <span class="wc-w" style="font-size:1.55rem;color:var(--teal);top:8%;left:18%;--pd:7s;--pp:0.2s">Hydrology</span>
+              <span class="wc-w" style="font-size:1.1rem;color:var(--blue);top:8%;left:64%;--pd:5s;--pp:1.4s">Climate Change</span>
+
+              <!-- row 3 -->
+              <span class="wc-w" style="font-size:0.75rem;color:var(--cyan);top:18%;left:2%;--pd:6s;--pp:0.6s">Phenology</span>
+              <span class="wc-w" style="font-size:2.1rem;color:var(--blue);top:17%;left:12%;--pd:8s;--pp:0s">Remote Sensing</span>
+              <span class="wc-w" style="font-size:0.9rem;color:var(--gold);top:20%;left:72%;--pd:5.5s;--pp:1.7s">Glacier</span>
+
+              <!-- row 4 -->
+              <span class="wc-w" style="font-size:0.8rem;color:var(--teal);top:30%;left:2%;--pd:6.5s;--pp:0.9s">SAR Imagery</span>
+              <span class="wc-w" style="font-size:1.25rem;color:var(--cyan);top:29%;left:22%;--pd:7.5s;--pp:0.4s">Foundation Models</span>
+              <span class="wc-w" style="font-size:0.95rem;color:var(--blue);top:30%;left:66%;--pd:6s;--pp:1.2s">Water Quality</span>
+
+              <!-- row 5 — center (largest words) -->
+              <span class="wc-w" style="font-size:1.85rem;color:var(--cyan);top:40%;left:8%;--pd:9s;--pp:0.7s">Deep Learning</span>
+              <span class="wc-w" style="font-size:0.78rem;color:var(--gold);top:42%;left:74%;--pd:5s;--pp:1.9s">Benchmarks</span>
+              <span class="wc-w" style="font-size:0.7rem;color:var(--text-muted);top:38%;left:82%;--pd:6.5s;--pp:0.3s">Optical &amp; Radar</span>
+
+              <!-- row 6 -->
+              <span class="wc-w" style="font-size:0.8rem;color:var(--gold);top:52%;left:4%;--pd:5.5s;--pp:1.0s">Snow &amp; Water</span>
+              <span class="wc-w" style="font-size:1.45rem;color:var(--blue);top:50%;left:28%;--pd:8s;--pp:0.5s">Multi-modal Fusion</span>
+              <span class="wc-w" style="font-size:0.9rem;color:var(--teal);top:52%;left:76%;--pd:6s;--pp:1.5s">Super-Resolution</span>
+
+              <!-- row 7 -->
+              <span class="wc-w" style="font-size:0.8rem;color:var(--cyan);top:62%;left:2%;--pd:7s;--pp:0.2s">Urban Flooding</span>
+              <span class="wc-w" style="font-size:1.75rem;color:var(--gold);top:61%;left:20%;--pd:8.5s;--pp:1.3s">Flood Mapping</span>
+              <span class="wc-w" style="font-size:0.82rem;color:var(--blue);top:63%;left:68%;--pd:5.5s;--pp:0.7s">Open Datasets</span>
+
+              <!-- row 8 -->
+              <span class="wc-w" style="font-size:0.88rem;color:var(--teal);top:73%;left:4%;--pd:6s;--pp:1.6s">Change Detection</span>
+              <span class="wc-w" style="font-size:1.05rem;color:var(--cyan);top:72%;left:34%;--pd:7s;--pp:0.4s">Semantic Segmentation</span>
+              <span class="wc-w" style="font-size:0.75rem;color:var(--gold);top:74%;left:76%;--pd:5s;--pp:1.1s">Phenology</span>
+
+              <!-- row 9 — bottom -->
+              <span class="wc-w" style="font-size:0.7rem;color:var(--text-muted);top:84%;left:8%;--pd:6.5s;--pp:0.8s">Annotation</span>
+              <span class="wc-w" style="font-size:0.9rem;color:var(--blue);top:83%;left:28%;--pd:7.5s;--pp:1.4s">Geoscience AI</span>
+              <span class="wc-w" style="font-size:0.68rem;color:var(--teal);top:85%;left:62%;--pd:5.5s;--pp:0.2s">Reproducibility</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1403,54 +1383,41 @@
 
     <div class="cfp-grid">
       <div class="cfp-topics fade-in">
-        <h3><i class="fa-solid fa-cloud"></i>&nbsp; Research Topics</h3>
-        <div class="wc-legend">
-          <span><span class="wc-dot blue"></span> Methods &amp; Models</span>
-          <span><span class="wc-dot cyan"></span> Applications</span>
-          <span><span class="wc-dot teal"></span> Data &amp; Benchmarks</span>
+        <h3><i class="fa-solid fa-list-check"></i>&nbsp; Topics of Interest</h3>
+
+        <div class="topic-group">
+          <h4>Methods &amp; Models</h4>
+          <ul class="topic-list">
+            <li><i class="fa-solid fa-circle-check"></i> Data-centric machine learning for remote sensing data</li>
+            <li><i class="fa-solid fa-circle-check"></i> Language and vision models (LLMs, CLIP, Visual Language Models)</li>
+            <li><i class="fa-solid fa-circle-check"></i> Data assimilation for image/temporal resolution discrepancy</li>
+            <li><i class="fa-solid fa-circle-check"></i> Multi-modal fusion for parameter estimation and prediction</li>
+            <li><i class="fa-solid fa-circle-check"></i> Generative models (GANs, diffusion) for remote sensing</li>
+            <li><i class="fa-solid fa-circle-check"></i> Explainability and interpretability of environmental AI</li>
+            <li><i class="fa-solid fa-circle-check"></i> Super-resolution and image reconstruction</li>
+          </ul>
         </div>
-        <div class="word-cloud-wrap">
-          <div class="word-cloud">
-            <!-- XL / flagship -->
-            <span class="wc-tag wc-xl wc-cyan"  style="--dur:4.8s;--delay:0.0s"><i class="fa-solid fa-water"></i> Flood Detection</span>
-            <span class="wc-tag wc-xl wc-blue"  style="--dur:5.2s;--delay:0.4s"><i class="fa-solid fa-layer-group"></i> Multi-modal Fusion</span>
-            <span class="wc-tag wc-xl wc-cyan"  style="--dur:4.5s;--delay:0.9s"><i class="fa-solid fa-earth-europe"></i> Climate Change</span>
 
-            <!-- LG -->
-            <span class="wc-tag wc-lg wc-blue"  style="--dur:4.2s;--delay:0.2s"><i class="fa-solid fa-brain"></i> Deep Learning</span>
-            <span class="wc-tag wc-lg wc-blue"  style="--dur:5.0s;--delay:0.6s"><i class="fa-solid fa-comment-dots"></i> Vision-Language Models</span>
-            <span class="wc-tag wc-lg wc-cyan"  style="--dur:4.7s;--delay:1.1s"><i class="fa-solid fa-satellite"></i> Remote Sensing</span>
-            <span class="wc-tag wc-lg wc-cyan"  style="--dur:3.9s;--delay:0.3s"><i class="fa-solid fa-snowflake"></i> Snow &amp; Water Prediction</span>
-            <span class="wc-tag wc-lg wc-gold"  style="--dur:5.3s;--delay:0.7s"><i class="fa-solid fa-database"></i> Open Datasets</span>
+        <div class="topic-group">
+          <h4>Applications</h4>
+          <ul class="topic-list">
+            <li><i class="fa-solid fa-circle-check"></i> Disaster relief and flood detection &amp; mapping</li>
+            <li><i class="fa-solid fa-circle-check"></i> Snow and water prediction</li>
+            <li><i class="fa-solid fa-circle-check"></i> Coast, sea, and marine monitoring</li>
+            <li><i class="fa-solid fa-circle-check"></i> Pollution and air/water quality analysis</li>
+            <li><i class="fa-solid fa-circle-check"></i> Sustainable and intelligent agriculture</li>
+            <li><i class="fa-solid fa-circle-check"></i> Climate change and geoscience applications</li>
+            <li><i class="fa-solid fa-circle-check"></i> Urban planning and phenological studies</li>
+          </ul>
+        </div>
 
-            <!-- MD -->
-            <span class="wc-tag wc-md wc-blue"  style="--dur:4.0s;--delay:1.4s"><i class="fa-solid fa-wand-magic-sparkles"></i> Generative Models</span>
-            <span class="wc-tag wc-md wc-blue"  style="--dur:4.6s;--delay:0.5s"><i class="fa-solid fa-up-right-and-down-left-from-center"></i> Super-resolution</span>
-            <span class="wc-tag wc-md wc-blue"  style="--dur:3.7s;--delay:1.8s"><i class="fa-solid fa-microchip"></i> Foundation Models</span>
-            <span class="wc-tag wc-md wc-cyan"  style="--dur:5.1s;--delay:0.8s"><i class="fa-solid fa-wheat-awn"></i> Sustainable Agriculture</span>
-            <span class="wc-tag wc-md wc-cyan"  style="--dur:4.3s;--delay:1.2s"><i class="fa-solid fa-anchor"></i> Marine Monitoring</span>
-            <span class="wc-tag wc-md wc-teal"  style="--dur:4.9s;--delay:0.1s"><i class="fa-solid fa-chart-bar"></i> Benchmarks</span>
-            <span class="wc-tag wc-md wc-teal"  style="--dur:3.8s;--delay:1.6s"><i class="fa-solid fa-images"></i> Annotated Imagery</span>
-
-            <!-- SM -->
-            <span class="wc-tag wc-sm wc-blue"  style="--dur:4.4s;--delay:0.3s">Data Assimilation</span>
-            <span class="wc-tag wc-sm wc-blue"  style="--dur:5.5s;--delay:1.0s">GANs &amp; Diffusion</span>
-            <span class="wc-tag wc-sm wc-blue"  style="--dur:3.6s;--delay:1.5s">Explainability</span>
-            <span class="wc-tag wc-sm wc-blue"  style="--dur:4.8s;--delay:0.8s">Image Reconstruction</span>
-            <span class="wc-tag wc-sm wc-cyan"  style="--dur:4.1s;--delay:1.3s">Disaster Relief</span>
-            <span class="wc-tag wc-sm wc-cyan"  style="--dur:5.4s;--delay:0.6s">Pollution Analysis</span>
-            <span class="wc-tag wc-sm wc-cyan"  style="--dur:3.9s;--delay:1.9s">Urban Planning</span>
-            <span class="wc-tag wc-sm wc-cyan"  style="--dur:4.7s;--delay:0.4s">Coast &amp; Sea Monitoring</span>
-            <span class="wc-tag wc-sm wc-teal"  style="--dur:5.0s;--delay:1.1s">Reproducible Pipelines</span>
-            <span class="wc-tag wc-sm wc-teal"  style="--dur:4.2s;--delay:0.2s">Hydrology Datasets</span>
-
-            <!-- XS -->
-            <span class="wc-tag wc-xs wc-blue"  style="--dur:5.2s;--delay:1.7s">LLMs &amp; CLIP</span>
-            <span class="wc-tag wc-xs wc-cyan"  style="--dur:3.7s;--delay:0.9s">Phenology</span>
-            <span class="wc-tag wc-xs wc-cyan"  style="--dur:4.5s;--delay:1.4s">Air Quality</span>
-            <span class="wc-tag wc-xs wc-teal"  style="--dur:4.0s;--delay:0.5s">Evaluation Metrics</span>
-            <span class="wc-tag wc-xs wc-blue"  style="--dur:5.1s;--delay:2.0s">Geoscience AI</span>
-          </div>
+        <div class="topic-group">
+          <h4>Open Data &amp; Benchmarks</h4>
+          <ul class="topic-list">
+            <li><i class="fa-solid fa-circle-check"></i> New open datasets for remote sensing and hydrology</li>
+            <li><i class="fa-solid fa-circle-check"></i> Annotated imaging datasets for environmental analysis</li>
+            <li><i class="fa-solid fa-circle-check"></i> Reproducible pipelines and evaluation benchmarks</li>
+          </ul>
         </div>
       </div>
 
