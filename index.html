@@ -803,7 +803,7 @@
       position: relative; margin-bottom: 1.4rem;
     }
     .org-photo {
-      width: 110px; height: 110px; border-radius: 50%;
+      width: 150px; height: 150px; border-radius: 50%;
       object-fit: cover; object-position: top center;
       border: 3px solid var(--border);
       transition: border-color 0.3s;
@@ -1532,11 +1532,9 @@
         <div class="org-role">Full Professor</div>
         <h3 class="org-name">Mourad Oussalah</h3>
         <p class="org-affil">University of Oulu, Finland</p>
-        <p class="org-bio">
-          Leads the Social Mining Research Group at the University of Oulu. Expert in computer vision, machine learning,
-          and remote sensing for environmental monitoring, with over 300 publications. Involved in the Finnish Research
-          Council Digital Water Flagship and Hybrid Intelligence Flagship.
-        </p>
+        <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('mourad')" style="margin-top:0.75rem;">
+          <i class="fa-solid fa-circle-info"></i> Details
+        </button>
       </div>
 
       <div class="org-card glass-card fade-in d1">
@@ -1547,11 +1545,9 @@
         <div class="org-role">Research Director</div>
         <h3 class="org-name">Olof Mogren</h3>
         <p class="org-affil">RISE Research Institute of Sweden</p>
-        <p class="org-bio">
-          Works on deep learning and foundation models for climate adaptation and environmental monitoring.
-          Published at ICCV and CVPR. Leads <em>Climate AI Nordic</em>, a Nordic initiative promoting AI research
-          in climate change and environmental process monitoring.
-        </p>
+        <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('olof')" style="margin-top:0.75rem;">
+          <i class="fa-solid fa-circle-info"></i> Details
+        </button>
       </div>
 
       <div class="org-card glass-card fade-in d2">
@@ -1562,12 +1558,9 @@
         <div class="org-role">Full Professor</div>
         <h3 class="org-name">Jukka Heikkonen</h3>
         <p class="org-affil">University of Turku, Finland</p>
-        <p class="org-bio">
-          Leads the Algorithms and Computational Intelligence Research Group at the University of Turku.
-          Expert at the intersection of computer vision and GIS data analysis for geographical applications
-          and autonomous systems, with over 200 publications. Involved in the Finnish Research Council
-          Digital Water Flagship.
-        </p>
+        <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('jukka')" style="margin-top:0.75rem;">
+          <i class="fa-solid fa-circle-info"></i> Details
+        </button>
       </div>
     </div>
 
@@ -1582,11 +1575,9 @@
           <div class="org-role">Doctoral Researcher</div>
           <h3 class="org-name">Getnet Demil</h3>
           <p class="org-affil">University of Oulu, Finland</p>
-          <p class="org-bio">
-            Focuses on deep learning and multi-sensor remote sensing for snow hydrology, integrating
-            Sentinel-1 SAR and Sentinel-2 optical imagery for snow cover fraction and snow water
-            equivalent estimation. Broader interests include GeoAI and spatiotemporal modelling.
-          </p>
+          <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('getnet')" style="margin-top:0.75rem;">
+            <i class="fa-solid fa-circle-info"></i> Details
+          </button>
         </div>
 
         <div class="org-card glass-card fade-in d2">
@@ -1597,14 +1588,69 @@
           <div class="org-role">Doctoral Researcher</div>
           <h3 class="org-name">Farhan Humayun</h3>
           <p class="org-affil">University of Turku, Finland</p>
-          <p class="org-bio">
-            Works on computer vision and SAR-based remote sensing, with focus on object detection
-            in multi-resolution SAR satellite imagery and UAV-based orthomosaic generation.
-            Broader interests include deep learning for geospatial analysis and autonomous navigation.
-          </p>
+          <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('farhan')" style="margin-top:0.75rem;">
+            <i class="fa-solid fa-circle-info"></i> Details
+          </button>
         </div>
       </div>
     </div>
+
+    <!-- Organizer modals -->
+    <div id="modal-mourad" class="modal-overlay" onclick="closeSpeakerModal(event,'mourad')">
+      <div class="modal-box glass-card">
+        <button class="modal-close" onclick="closeSpeakerModal(null,'mourad')">&times;</button>
+        <p class="section-label"><i class="fa-solid fa-people-group"></i>&nbsp; Workshop Organizer</p>
+        <h3 class="modal-title">Mourad Oussalah</h3>
+        <p class="org-role" style="margin-bottom:0;">Full Professor &middot; University of Oulu, Finland</p>
+        <hr class="modal-divider" />
+        <p>Leads the Social Mining Research Group at the University of Oulu. Expert in computer vision, machine learning, and remote sensing for environmental monitoring, with over 300 publications. Involved in the Finnish Research Council Digital Water Flagship and Hybrid Intelligence Flagship.</p>
+      </div>
+    </div>
+
+    <div id="modal-olof" class="modal-overlay" onclick="closeSpeakerModal(event,'olof')">
+      <div class="modal-box glass-card">
+        <button class="modal-close" onclick="closeSpeakerModal(null,'olof')">&times;</button>
+        <p class="section-label"><i class="fa-solid fa-people-group"></i>&nbsp; Workshop Organizer</p>
+        <h3 class="modal-title">Olof Mogren</h3>
+        <p class="org-role" style="margin-bottom:0;">Research Director &middot; RISE Research Institute of Sweden</p>
+        <hr class="modal-divider" />
+        <p>Works on deep learning and foundation models for climate adaptation and environmental monitoring. Published at ICCV and CVPR. Leads <em>Climate AI Nordic</em>, a Nordic initiative promoting AI research in climate change and environmental process monitoring.</p>
+      </div>
+    </div>
+
+    <div id="modal-jukka" class="modal-overlay" onclick="closeSpeakerModal(event,'jukka')">
+      <div class="modal-box glass-card">
+        <button class="modal-close" onclick="closeSpeakerModal(null,'jukka')">&times;</button>
+        <p class="section-label"><i class="fa-solid fa-people-group"></i>&nbsp; Workshop Organizer</p>
+        <h3 class="modal-title">Jukka Heikkonen</h3>
+        <p class="org-role" style="margin-bottom:0;">Full Professor &middot; University of Turku, Finland</p>
+        <hr class="modal-divider" />
+        <p>Leads the Algorithms and Computational Intelligence Research Group at the University of Turku. Expert at the intersection of computer vision and GIS data analysis for geographical applications and autonomous systems, with over 200 publications. Involved in the Finnish Research Council Digital Water Flagship.</p>
+      </div>
+    </div>
+
+    <div id="modal-getnet" class="modal-overlay" onclick="closeSpeakerModal(event,'getnet')">
+      <div class="modal-box glass-card">
+        <button class="modal-close" onclick="closeSpeakerModal(null,'getnet')">&times;</button>
+        <p class="section-label"><i class="fa-solid fa-people-group"></i>&nbsp; Workshop Organizer</p>
+        <h3 class="modal-title">Getnet Demil</h3>
+        <p class="org-role" style="margin-bottom:0;">Doctoral Researcher &middot; University of Oulu, Finland</p>
+        <hr class="modal-divider" />
+        <p>Focuses on deep learning and multi-sensor remote sensing for snow hydrology, integrating Sentinel-1 SAR and Sentinel-2 optical imagery for snow cover fraction and snow water equivalent estimation. Broader interests include GeoAI and spatiotemporal modelling.</p>
+      </div>
+    </div>
+
+    <div id="modal-farhan" class="modal-overlay" onclick="closeSpeakerModal(event,'farhan')">
+      <div class="modal-box glass-card">
+        <button class="modal-close" onclick="closeSpeakerModal(null,'farhan')">&times;</button>
+        <p class="section-label"><i class="fa-solid fa-people-group"></i>&nbsp; Workshop Organizer</p>
+        <h3 class="modal-title">Farhan Humayun</h3>
+        <p class="org-role" style="margin-bottom:0;">Doctoral Researcher &middot; University of Turku, Finland</p>
+        <hr class="modal-divider" />
+        <p>Works on computer vision and SAR-based remote sensing, with focus on object detection in multi-resolution SAR satellite imagery and UAV-based orthomosaic generation. Broader interests include deep learning for geospatial analysis and autonomous navigation.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
