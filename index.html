@@ -570,39 +570,29 @@
     }
 
     .keynote-body {
-      padding: 2.25rem 2rem;
-      display: flex; flex-direction: column; align-items: center; gap: 2rem;
+      display: flex; flex-direction: column; align-items: stretch; gap: 0;
     }
-    @media (min-width: 640px) {
-      .keynote-body { flex-direction: row; align-items: flex-start; }
-    }
+    @media (min-width: 640px) { .keynote-body { flex-direction: row; } }
 
-    /* Glowing photo ring */
-    .keynote-photo-wrap { position: relative; flex-shrink: 0; }
-    .keynote-photo-wrap::before {
-      content: '';
-      position: absolute; inset: -5px;
-      border-radius: 50%;
-      background: conic-gradient(var(--blue), var(--cyan), var(--teal), var(--blue));
-      animation: kn-ring 4s linear infinite;
-      z-index: 0;
+    /* Photo column */
+    .keynote-photo-col {
+      flex-shrink: 0; width: 100%;
+      background: #060b15;
     }
-    @keyframes kn-ring {
-      to { transform: rotate(360deg); }
-    }
+    @media (min-width: 640px) { .keynote-photo-col { width: 260px; } }
+
     .keynote-photo {
-      position: relative; z-index: 1;
-      width: 190px; height: 190px; border-radius: 50%;
+      width: 100%; aspect-ratio: 3/4;
       object-fit: cover; object-position: center 20%;
-      border: 4px solid var(--bg-card);
       display: block;
     }
-    .keynote-flag {
-      position: absolute; bottom: 8px; right: 8px;
-      font-size: 1.3rem; line-height: 1; z-index: 2;
-    }
 
-    .keynote-content { display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+    /* Content column */
+    .keynote-content-col {
+      flex: 1; padding: 2rem 1.75rem;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      background: var(--bg-card);
+    }
 
     .keynote-title {
       border-left: 3px solid var(--cyan);
@@ -834,65 +824,65 @@
     ============================================================ */
     #organizers { background: var(--bg-alt); }
 
-    .org-grid {
+    /* ── Portrait person card (organizers + keynote photo col) ── */
+    .person-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.75rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
     }
+    @media (min-width: 640px)  { .person-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (min-width: 1024px) { .person-grid { grid-template-columns: repeat(5, 1fr); } }
 
-    /* Top row: 3 senior organizers */
-    .org-grid-senior {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    /* Bottom row: 2 early-career organizers */
-    .org-grid-jr {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.75rem;
-      max-width: 750px;
-    }
-
-    .org-card {
-      padding: 1.85rem 1.75rem; border-radius: 18px;
-      display: flex; flex-direction: column; align-items: center; text-align: center;
+    .person-card {
+      border-radius: 14px; overflow: hidden;
+      background: #060b15;
       transition: transform 0.3s, box-shadow 0.3s;
-      position: relative; overflow: hidden;
+      display: flex; flex-direction: column;
     }
-    .org-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+    .person-card:hover { transform: translateY(-6px); box-shadow: 0 16px 48px rgba(0,0,0,0.6); }
 
-    .org-photo-wrap {
-      position: relative; margin-bottom: 1.4rem;
-    }
-    .org-photo {
-      width: 150px; height: 150px; border-radius: 50%;
+    .person-photo-area { position: relative; }
+    .person-photo {
+      width: 100%; aspect-ratio: 3/4;
       object-fit: cover; object-position: top center;
-      border: 3px solid var(--border);
-      transition: border-color 0.3s;
+      display: block;
     }
-    .org-card:hover .org-photo { border-color: var(--cyan); }
+    .person-overlay {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 55%, transparent 100%);
+      padding: 2.5rem 0.9rem 0.75rem;
+    }
+    .person-overlay-role {
+      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: rgba(255,255,255,0.6); margin-bottom: 0.2rem;
+    }
+    .person-overlay-name {
+      font-size: 1rem; font-weight: 700; color: #fff;
+      text-decoration: underline;
+      text-decoration-color: rgba(255,255,255,0.45);
+      text-underline-offset: 3px; line-height: 1.25;
+    }
 
-    .org-flag {
-      position: absolute; bottom: 4px; right: 4px;
-      font-size: 1.15rem; line-height: 1;
+    .person-footer {
+      padding: 0.65rem 0.9rem;
+      display: flex; align-items: center; gap: 0.5rem;
+      background: #060b15;
     }
-
-    .org-role {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--cyan); margin-bottom: 0.3rem;
+    .person-link-btn, .person-detail-btn {
+      width: 32px; height: 32px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.85rem; text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75);
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+      cursor: pointer; flex-shrink: 0;
     }
-    .org-name { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
-    .org-affil {
-      font-size: 0.9rem; color: var(--text-muted);
-      margin-bottom: 1rem; line-height: 1.5;
+    .person-link-btn:hover, .person-detail-btn:hover {
+      background: rgba(255,255,255,0.2); color: #fff; transform: scale(1.1);
     }
-    .org-bio {
-      font-size: 0.9rem; color: var(--text-muted);
-      line-height: 1.7; flex: 1;
+    .person-affil {
+      font-size: 0.72rem; color: rgba(255,255,255,0.45); line-height: 1.4; flex: 1;
     }
 
     /* ============================================================
@@ -1284,16 +1274,29 @@
       </div>
 
       <div class="keynote-body">
-        <div class="keynote-photo-wrap">
-          <img class="keynote-photo" src="assets/kavin.jpg" alt="Kevin Tansey" />
-          <span class="keynote-flag">🇬🇧</span>
+
+        <!-- Photo column -->
+        <div class="keynote-photo-col">
+          <div class="person-photo-area">
+            <img class="keynote-photo" src="assets/kavin.jpg" alt="Kevin Tansey" />
+            <div class="person-overlay">
+              <div class="person-overlay-role">Professor of Remote Sensing &nbsp;🇬🇧</div>
+              <div class="person-overlay-name">Prof. Kevin Tansey</div>
+            </div>
+          </div>
+          <div class="person-footer">
+            <a class="person-link-btn" href="https://le.ac.uk/people/kevin-tansey" target="_blank" rel="noopener" title="University of Leicester profile">
+              <i class="fa-solid fa-globe"></i>
+            </a>
+            <button class="person-detail-btn" onclick="openSpeakerModal('tansey')" title="Talk Details &amp; Abstract">
+              <i class="fa-solid fa-file-lines"></i>
+            </button>
+            <span class="person-affil">University of Leicester, UK</span>
+          </div>
         </div>
 
-        <div class="keynote-content">
-          <div class="org-role">Professor of Remote Sensing</div>
-          <h3 class="org-name" style="font-size:1.55rem;">Prof. Kevin Tansey</h3>
-          <p class="org-affil">University of Leicester, UK</p>
-
+        <!-- Content column -->
+        <div class="keynote-content-col">
           <p class="keynote-title">"From Fields to Fires to Fens: Integrating Deep Learning and Multi-Sensor Earth Observation for Global Environmental Resilience"</p>
 
           <div class="keynote-stats">
@@ -1309,12 +1312,13 @@
             <span class="kn-pillar">🤖 AI in Publishing</span>
           </div>
 
-          <div style="margin-top:0.75rem;">
+          <div style="margin-top:0.5rem;">
             <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('tansey')">
               <i class="fa-solid fa-file-lines"></i> Talk Details &amp; Abstract
             </button>
           </div>
         </div>
+
       </div>
 
     </div>
@@ -1625,77 +1629,106 @@
       <p class="section-subtitle">An international team with expertise spanning computer vision, machine learning, remote sensing, and environmental science.</p>
     </div>
 
-    <!-- Senior organizers (3) -->
-    <div class="org-grid-senior">
-      <div class="org-card glass-card fade-in">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="assets/mourad.jpg" alt="Mourad Oussalah" loading="lazy" />
-          <span class="org-flag">🇫🇮</span>
-        </div>
-        <div class="org-role">Full Professor</div>
-        <h3 class="org-name">Mourad Oussalah</h3>
-        <p class="org-affil">University of Oulu, Finland</p>
-        <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('mourad')" style="margin-top:0.75rem;">
-          <i class="fa-solid fa-circle-info"></i> Details
-        </button>
-      </div>
+    <!-- Organizers — portrait cards -->
+    <div class="person-grid">
 
-      <div class="org-card glass-card fade-in d1">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="assets/olof.png" alt="Olof Mogren" loading="lazy" />
-          <span class="org-flag">🇸🇪</span>
-        </div>
-        <div class="org-role">Research Director</div>
-        <h3 class="org-name">Olof Mogren</h3>
-        <p class="org-affil">RISE Research Institute of Sweden</p>
-        <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('olof')" style="margin-top:0.75rem;">
-          <i class="fa-solid fa-circle-info"></i> Details
-        </button>
-      </div>
-
-      <div class="org-card glass-card fade-in d2">
-        <div class="org-photo-wrap">
-          <img class="org-photo" src="assets/jukka.jpg" alt="Jukka Heikkonen" loading="lazy" />
-          <span class="org-flag">🇫🇮</span>
-        </div>
-        <div class="org-role">Full Professor</div>
-        <h3 class="org-name">Jukka Heikkonen</h3>
-        <p class="org-affil">University of Turku, Finland</p>
-        <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('jukka')" style="margin-top:0.75rem;">
-          <i class="fa-solid fa-circle-info"></i> Details
-        </button>
-      </div>
-    </div>
-
-    <!-- Early-career organizers (2) — centred -->
-    <div style="display:flex;justify-content:center;">
-      <div class="org-grid-jr">
-        <div class="org-card glass-card fade-in d1">
-          <div class="org-photo-wrap">
-            <img class="org-photo" src="assets/getnet.jpg" alt="Getnet Demil" loading="lazy" />
-            <span class="org-flag">🇫🇮</span>
+      <!-- Mourad Oussalah -->
+      <div class="person-card fade-in">
+        <div class="person-photo-area">
+          <img class="person-photo" src="assets/mourad.jpg" alt="Mourad Oussalah" loading="lazy" />
+          <div class="person-overlay">
+            <div class="person-overlay-role">Full Professor &nbsp;🇫🇮</div>
+            <div class="person-overlay-name">Mourad Oussalah</div>
           </div>
-          <div class="org-role">Doctoral Researcher</div>
-          <h3 class="org-name">Getnet Demil</h3>
-          <p class="org-affil">University of Oulu, Finland</p>
-          <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('getnet')" style="margin-top:0.75rem;">
-            <i class="fa-solid fa-circle-info"></i> Details
-          </button>
         </div>
-
-        <div class="org-card glass-card fade-in d2">
-          <div class="org-photo-wrap">
-            <img class="org-photo" src="assets/farhan.jpg" alt="Farhan Humayun" loading="lazy" />
-            <span class="org-flag">🇫🇮</span>
-          </div>
-          <div class="org-role">Doctoral Researcher</div>
-          <h3 class="org-name">Farhan Humayun</h3>
-          <p class="org-affil">University of Turku, Finland</p>
-          <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('farhan')" style="margin-top:0.75rem;">
-            <i class="fa-solid fa-circle-info"></i> Details
+        <div class="person-footer">
+          <a class="person-link-btn" href="https://www.researchgate.net/profile/Mourad-Oussalah-2" target="_blank" rel="noopener" title="ResearchGate profile">
+            <i class="fa-brands fa-researchgate"></i>
+          </a>
+          <button class="person-detail-btn" onclick="openSpeakerModal('mourad')" title="Details">
+            <i class="fa-solid fa-circle-info"></i>
           </button>
+          <span class="person-affil">University of Oulu, Finland</span>
         </div>
       </div>
+
+      <!-- Olof Mogren -->
+      <div class="person-card fade-in d1">
+        <div class="person-photo-area">
+          <img class="person-photo" src="assets/olof.png" alt="Olof Mogren" loading="lazy" />
+          <div class="person-overlay">
+            <div class="person-overlay-role">Research Director &nbsp;🇸🇪</div>
+            <div class="person-overlay-name">Olof Mogren</div>
+          </div>
+        </div>
+        <div class="person-footer">
+          <a class="person-link-btn" href="https://www.linkedin.com/in/olof-mogren/" target="_blank" rel="noopener" title="LinkedIn profile">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <button class="person-detail-btn" onclick="openSpeakerModal('olof')" title="Details">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+          <span class="person-affil">RISE Research Institute of Sweden</span>
+        </div>
+      </div>
+
+      <!-- Jukka Heikkonen -->
+      <div class="person-card fade-in d2">
+        <div class="person-photo-area">
+          <img class="person-photo" src="assets/jukka.jpg" alt="Jukka Heikkonen" loading="lazy" />
+          <div class="person-overlay">
+            <div class="person-overlay-role">Full Professor &nbsp;🇫🇮</div>
+            <div class="person-overlay-name">Jukka Heikkonen</div>
+          </div>
+        </div>
+        <div class="person-footer">
+          <button class="person-detail-btn" onclick="openSpeakerModal('jukka')" title="Details">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+          <span class="person-affil">University of Turku, Finland</span>
+        </div>
+      </div>
+
+      <!-- Getnet Demil -->
+      <div class="person-card fade-in d1">
+        <div class="person-photo-area">
+          <img class="person-photo" src="assets/getnet.jpg" alt="Getnet Demil" loading="lazy" />
+          <div class="person-overlay">
+            <div class="person-overlay-role">Doctoral Researcher &nbsp;🇫🇮</div>
+            <div class="person-overlay-name">Getnet Demil</div>
+          </div>
+        </div>
+        <div class="person-footer">
+          <a class="person-link-btn" href="https://www.linkedin.com/in/getnetdemil/" target="_blank" rel="noopener" title="LinkedIn profile">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <button class="person-detail-btn" onclick="openSpeakerModal('getnet')" title="Details">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+          <span class="person-affil">University of Oulu, Finland</span>
+        </div>
+      </div>
+
+      <!-- Farhan Humayun -->
+      <div class="person-card fade-in d2">
+        <div class="person-photo-area">
+          <img class="person-photo" src="assets/farhan.jpg" alt="Farhan Humayun" loading="lazy" />
+          <div class="person-overlay">
+            <div class="person-overlay-role">Doctoral Researcher &nbsp;🇫🇮</div>
+            <div class="person-overlay-name">Farhan Humayun</div>
+          </div>
+        </div>
+        <div class="person-footer">
+          <a class="person-link-btn" href="https://www.linkedin.com/in/farhan-humayun/" target="_blank" rel="noopener" title="LinkedIn profile">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+          <button class="person-detail-btn" onclick="openSpeakerModal('farhan')" title="Details">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
+          <span class="person-affil">University of Turku, Finland</span>
+        </div>
+      </div>
+
     </div>
 
     <!-- Organizer modals -->
