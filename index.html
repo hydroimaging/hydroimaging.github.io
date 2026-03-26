@@ -540,50 +540,97 @@
     .speakers-tba p { color: var(--text-muted); font-size: 1.08rem; line-height: 1.8; margin-bottom: 0.75rem; }
     .speakers-tba .badges { display: flex; gap: 0.65rem; justify-content: center; flex-wrap: wrap; margin-top: 1.5rem; }
 
-    /* Speaker card (keynote) */
-    .speakers-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-    @media (min-width: 860px) {
-      .speakers-grid { grid-template-columns: 3fr 2fr; }
+    /* ── Keynote featured card ── */
+    .keynote-card {
+      max-width: 900px; margin: 0 auto;
+      border-radius: 22px; overflow: hidden;
     }
 
-    .speaker-card {
+    .keynote-banner {
+      background: linear-gradient(135deg, #1a56db 0%, var(--cyan) 55%, var(--teal) 100%);
+      padding: 1.1rem 2rem;
+      display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;
+      position: relative; overflow: hidden;
+    }
+    .keynote-banner::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.12) 50%, transparent 100%);
+      background-size: 200% 100%;
+      animation: kn-shimmer 3s linear infinite;
+    }
+    @keyframes kn-shimmer {
+      0%   { background-position: -200% 0; }
+      100% { background-position:  200% 0; }
+    }
+    .keynote-banner .badge {
+      background: rgba(255,255,255,0.18);
+      border-color: rgba(255,255,255,0.35);
+      color: #fff; position: relative; z-index: 1;
+    }
+
+    .keynote-body {
+      padding: 2.25rem 2rem;
       display: flex; flex-direction: column; align-items: center; gap: 2rem;
-      padding: 2.25rem 2rem; border-radius: 20px;
     }
     @media (min-width: 640px) {
-      .speaker-card { flex-direction: row; align-items: flex-start; }
+      .keynote-body { flex-direction: row; align-items: flex-start; }
     }
 
-    .speaker-tba {
-      display: flex; flex-direction: column; align-items: center; text-align: center;
-      padding: 2.5rem 1.75rem; border-radius: 20px;
-      border: 1.5px dashed var(--border);
+    /* Glowing photo ring */
+    .keynote-photo-wrap { position: relative; flex-shrink: 0; }
+    .keynote-photo-wrap::before {
+      content: '';
+      position: absolute; inset: -5px;
+      border-radius: 50%;
+      background: conic-gradient(var(--blue), var(--cyan), var(--teal), var(--blue));
+      animation: kn-ring 4s linear infinite;
+      z-index: 0;
     }
-    .speaker-tba-icon {
-      width: 80px; height: 80px; border-radius: 50%;
-      background: rgba(41,121,255,0.07); border: 2px dashed rgba(41,121,255,0.25);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; color: var(--text-muted);
-      margin-bottom: 1.25rem;
+    @keyframes kn-ring {
+      to { transform: rotate(360deg); }
     }
-    .speaker-photo-wrap { position: relative; flex-shrink: 0; }
-    .speaker-photo {
-      width: 150px; height: 150px; border-radius: 50%;
+    .keynote-photo {
+      position: relative; z-index: 1;
+      width: 190px; height: 190px; border-radius: 50%;
       object-fit: cover; object-position: center 20%;
-      border: 3px solid var(--border);
-      transition: border-color 0.3s;
+      border: 4px solid var(--bg-card);
+      display: block;
     }
-    .speaker-card:hover .speaker-photo { border-color: var(--cyan); }
-    .speaker-body { display: flex; flex-direction: column; gap: 0.6rem; }
-    .speaker-badges { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
-    .speaker-talk-title {
-      font-style: italic; color: var(--cyan); font-size: 1rem;
-      line-height: 1.6; margin-bottom: 0.25rem;
+    .keynote-flag {
+      position: absolute; bottom: 8px; right: 8px;
+      font-size: 1.3rem; line-height: 1; z-index: 2;
+    }
+
+    .keynote-content { display: flex; flex-direction: column; gap: 0.7rem; flex: 1; }
+
+    .keynote-title {
+      border-left: 3px solid var(--cyan);
+      padding-left: 1rem;
+      font-style: italic;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--text);
+      margin: 0.25rem 0;
+    }
+
+    .keynote-stats {
+      display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 0.25rem;
+    }
+    .kn-stat {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.3rem 0.85rem; border-radius: 999px;
+      font-size: 0.78rem; font-weight: 600;
+      background: rgba(41,121,255,0.1); color: var(--blue);
+      border: 1px solid rgba(41,121,255,0.25);
+    }
+
+    .keynote-pillars {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.1rem;
+    }
+    .kn-pillar {
+      padding: 0.32rem 0.9rem; border-radius: 10px; font-size: 0.82rem; font-weight: 600;
+      background: var(--glass); border: 1px solid var(--border); color: var(--text-muted);
     }
 
     /* Modal */
@@ -1228,39 +1275,46 @@
       <h2 class="section-title">Keynote &amp; Invited Talks</h2>
     </div>
 
-    <div class="speakers-grid fade-in d1">
+    <!-- Keynote: Kevin Tansey -->
+    <div class="keynote-card glass-card fade-in d1">
 
-      <!-- Keynote: Kevin Tansey -->
-      <div class="speaker-card glass-card">
-        <div class="speaker-photo-wrap">
-          <img class="speaker-photo" src="assets/kavin.jpg" alt="Kevin Tansey" />
-          <span class="org-flag">🇬🇧</span>
-        </div>
-        <div class="speaker-body">
-          <div class="speaker-badges">
-            <span class="badge badge-blue"><i class="fa-solid fa-star"></i> Keynote &middot; 45 min</span>
-            <span class="badge badge-gold"><i class="fa-solid fa-award"></i> Sponsored by Digital Water Flagship</span>
-          </div>
-          <div class="org-role">Professor of Remote Sensing</div>
-          <h3 class="org-name">Prof. Kevin Tansey</h3>
-          <p class="org-affil">University of Leicester, UK</p>
-          <p class="speaker-talk-title">"From Fields to Fires to Fens: Integrating Deep Learning and Multi-Sensor Earth Observation for Global Environmental Resilience"</p>
-          <p class="org-bio">Remote sensing scientist with 30 years of experience and 112 peer-reviewed publications spanning agriculture, wildfire, and peatland Earth Observation. Editor-in-Chief of the <em>International Journal of Remote Sensing</em> and former WMO and CEOS panel member.</p>
-          <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('tansey')" style="margin-top:0.5rem;align-self:flex-start;">
-            <i class="fa-solid fa-file-lines"></i> Talk Details
-          </button>
-        </div>
+      <div class="keynote-banner">
+        <span class="badge"><i class="fa-solid fa-star"></i>&nbsp; Keynote Address &middot; 45 min</span>
+        <span class="badge"><i class="fa-solid fa-award"></i>&nbsp; Sponsored by Digital Water Flagship</span>
       </div>
 
-      <!-- Keynote TBA -->
-      <div class="speaker-tba glass-card">
-        <div class="speaker-tba-icon">
-          <i class="fa-solid fa-microphone"></i>
+      <div class="keynote-body">
+        <div class="keynote-photo-wrap">
+          <img class="keynote-photo" src="assets/kavin.jpg" alt="Kevin Tansey" />
+          <span class="keynote-flag">🇬🇧</span>
         </div>
-        <div class="org-role">Keynote Speaker</div>
-        <h3 class="org-name">To Be Announced</h3>
-        <p class="org-bio" style="margin-top:0.5rem;">An additional keynote speaker from the Earth Observation, Computer Vision, or Environmental Science communities will be announced shortly. Stay tuned.</p>
-        <span class="badge badge-cyan" style="margin-top:1rem;"><i class="fa-solid fa-clock"></i>&nbsp; Coming Soon</span>
+
+        <div class="keynote-content">
+          <div class="org-role">Professor of Remote Sensing</div>
+          <h3 class="org-name" style="font-size:1.55rem;">Prof. Kevin Tansey</h3>
+          <p class="org-affil">University of Leicester, UK</p>
+
+          <p class="keynote-title">"From Fields to Fires to Fens: Integrating Deep Learning and Multi-Sensor Earth Observation for Global Environmental Resilience"</p>
+
+          <div class="keynote-stats">
+            <span class="kn-stat"><i class="fa-solid fa-timeline"></i> 30+ yrs experience</span>
+            <span class="kn-stat"><i class="fa-solid fa-book"></i> 112 publications</span>
+            <span class="kn-stat"><i class="fa-solid fa-pen-nib"></i> Editor-in-Chief, IJRS</span>
+          </div>
+
+          <div class="keynote-pillars">
+            <span class="kn-pillar">🌾 Agriculture &amp; Crop Yield</span>
+            <span class="kn-pillar">🔥 Wildfire &amp; Burned Area</span>
+            <span class="kn-pillar">🌿 Peatland Hydrology</span>
+            <span class="kn-pillar">🤖 AI in Publishing</span>
+          </div>
+
+          <div style="margin-top:0.75rem;">
+            <button class="btn btn-outline btn-sm" onclick="openSpeakerModal('tansey')">
+              <i class="fa-solid fa-file-lines"></i> Talk Details &amp; Abstract
+            </button>
+          </div>
+        </div>
       </div>
 
     </div>
@@ -1465,11 +1519,11 @@
             </div>
           </div>
 
-          <a href="#" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;">
-            <i class="fa-solid fa-paper-plane"></i>&nbsp; Submit via CMT
+          <a href="https://icip2026.exordo.com/" target="_blank" rel="noopener" class="btn btn-primary" style="width:100%;justify-content:center;margin-top:0.5rem;">
+            <i class="fa-solid fa-paper-plane"></i>&nbsp; Submit Your Paper
           </a>
-          <p style="font-size:0.8rem;color:var(--text-muted);text-align:center;margin-top:0.85rem;">
-            Submission link will be available shortly
+          <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-top:0.85rem;line-height:1.6;">
+            Select the <strong style="color:var(--text);">Satellite Workshop Papers</strong> track, then choose <strong style="color:var(--text);">HydroImaging</strong> from the workshop list.
           </p>
         </div>
       </div>
@@ -1780,7 +1834,7 @@
         <ul>
           <li><a href="https://2026.ieeeicip.org/" target="_blank" rel="noopener">IEEE ICIP 2026</a></li>
           <li><a href="https://ieeeauthorcenter.ieee.org/" target="_blank" rel="noopener">IEEE Author Center</a></li>
-          <li><a href="#" target="_blank" rel="noopener">Submit via CMT</a></li>
+          <li><a href="https://icip2026.exordo.com/" target="_blank" rel="noopener">Submit Paper</a></li>
           <li><a href="https://ieeexplore.ieee.org/" target="_blank" rel="noopener">IEEExplore</a></li>
           <li><a href="https://digitalwaters.fi/" target="_blank" rel="noopener">Digital Water Flagship</a></li>
           <li><a href="https://climateainordics.com/" target="_blank" rel="noopener">Climate AI Nordics</a></li>
