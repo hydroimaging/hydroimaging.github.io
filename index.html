@@ -779,10 +779,16 @@
     ============================================================ */
     #dates { background: var(--bg); }
 
-    .dates-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); gap: 1.5rem; }
+    .dates-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1rem;
+    }
+    @media (max-width: 1000px) { .dates-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 600px)  { .dates-grid { grid-template-columns: repeat(2, 1fr); } }
 
     .date-card {
-      padding: 1.85rem; border-radius: 16px; position: relative;
+      padding: 1.35rem; border-radius: 16px; position: relative;
       overflow: hidden; transition: transform 0.3s, box-shadow 0.3s;
     }
     .date-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
@@ -796,9 +802,9 @@
     .date-card.gold::before { background: var(--gold); }
 
     .dc-icon {
-      width: 2.6rem; height: 2.6rem; border-radius: 10px;
+      width: 2.2rem; height: 2.2rem; border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.2rem; font-size: 1.15rem;
+      margin-bottom: 0.8rem; font-size: 1rem;
     }
     .date-card.blue .dc-icon { background: rgba(41,121,255,0.12); color: var(--blue); }
     .date-card.cyan .dc-icon { background: rgba(0,229,255,0.10); color: var(--cyan); }
@@ -818,6 +824,9 @@
     .mcd-val { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 600; color: var(--blue); display: block; line-height: 1; }
     .mcd-lbl { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
     .mcd-sep { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--border); align-self: flex-start; margin-top: 0.05rem; }
+    .date-card.cyan .mcd-val { color: var(--cyan); }
+    .date-card.teal .mcd-val { color: var(--teal); }
+    .date-card.gold .mcd-val { color: var(--gold); }
 
     /* ============================================================
        ORGANIZERS
@@ -1562,22 +1571,12 @@
         <div class="dc-label">Deadline</div>
         <h3 class="dc-title">Paper Submission</h3>
         <div class="dc-date">May 13, 2026</div>
-        <span class="badge badge-blue"><i class="fa-solid fa-circle" style="font-size:0.45rem"></i>&nbsp; Open</span>
-        <div class="mini-cd" id="miniCd">
-          <div class="mcd-unit">
-            <span class="mcd-val" id="mcd-d">--</span>
-            <span class="mcd-lbl">d</span>
-          </div>
+        <div class="mini-cd">
+          <div class="mcd-unit"><span class="mcd-val" id="mcd-d">--</span><span class="mcd-lbl">d</span></div>
           <span class="mcd-sep">:</span>
-          <div class="mcd-unit">
-            <span class="mcd-val" id="mcd-h">--</span>
-            <span class="mcd-lbl">h</span>
-          </div>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd-h">--</span><span class="mcd-lbl">h</span></div>
           <span class="mcd-sep">:</span>
-          <div class="mcd-unit">
-            <span class="mcd-val" id="mcd-m">--</span>
-            <span class="mcd-lbl">m</span>
-          </div>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd-m">--</span><span class="mcd-lbl">m</span></div>
         </div>
       </div>
 
@@ -1586,7 +1585,13 @@
         <div class="dc-label">Notification</div>
         <h3 class="dc-title">Acceptance Notification</h3>
         <div class="dc-date">June 10, 2026</div>
-        <span class="badge badge-cyan"><i class="fa-solid fa-hourglass-half"></i>&nbsp; Upcoming</span>
+        <div class="mini-cd">
+          <div class="mcd-unit"><span class="mcd-val" id="mcd2-d">--</span><span class="mcd-lbl">d</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd2-h">--</span><span class="mcd-lbl">h</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd2-m">--</span><span class="mcd-lbl">m</span></div>
+        </div>
       </div>
 
       <div class="date-card teal glass-card fade-in d2">
@@ -1594,7 +1599,13 @@
         <div class="dc-label">Camera-Ready</div>
         <h3 class="dc-title">Final Manuscript</h3>
         <div class="dc-date">July 1, 2026</div>
-        <span class="badge badge-cyan"><i class="fa-solid fa-hourglass-half"></i>&nbsp; Upcoming</span>
+        <div class="mini-cd">
+          <div class="mcd-unit"><span class="mcd-val" id="mcd3-d">--</span><span class="mcd-lbl">d</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd3-h">--</span><span class="mcd-lbl">h</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd3-m">--</span><span class="mcd-lbl">m</span></div>
+        </div>
       </div>
 
       <div class="date-card blue glass-card fade-in d3">
@@ -1602,7 +1613,13 @@
         <div class="dc-label">Registration</div>
         <h3 class="dc-title">Author Registration</h3>
         <div class="dc-date">July 16, 2026</div>
-        <span class="badge badge-blue"><i class="fa-solid fa-hourglass-half"></i>&nbsp; Upcoming</span>
+        <div class="mini-cd">
+          <div class="mcd-unit"><span class="mcd-val" id="mcd4-d">--</span><span class="mcd-lbl">d</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd4-h">--</span><span class="mcd-lbl">h</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd4-m">--</span><span class="mcd-lbl">m</span></div>
+        </div>
       </div>
 
       <div class="date-card gold glass-card fade-in d4">
@@ -1783,7 +1800,15 @@
         <h3 class="modal-title">Getnet Demil</h3>
         <p class="org-role" style="margin-bottom:0;">Doctoral Researcher &middot; University of Oulu, Finland</p>
         <hr class="modal-divider" />
-        <p>Focuses on deep learning and multi-sensor remote sensing for snow hydrology, integrating Sentinel-1 SAR and Sentinel-2 optical imagery for snow cover fraction and snow water equivalent estimation. Broader interests include GeoAI and spatiotemporal modelling.</p>
+        <p>PhD researcher at the University of Oulu, specializing in GeoAI, remote sensing, and AI-driven hydrological modeling. His research involves creating deep learning frameworks to estimate snow hydrology parameters using Earth observation data from multiple sensors. He is dedicated to merging multi-sensor imagery to enhance the accuracy of snow cover fraction and snow water equivalent estimates, which are crucial for hydrological modeling and analyzing climate impacts.</p>
+        <h4 class="modal-section-head">Research Interests</h4>
+        <ul style="padding-left:1.25rem;margin:0;display:flex;flex-direction:column;gap:0.35rem;">
+          <li style="font-size:0.95rem;color:var(--text-muted);">AI for hydrological modeling</li>
+          <li style="font-size:0.95rem;color:var(--text-muted);">Multi-temporal and multi-sensor data fusion</li>
+          <li style="font-size:0.95rem;color:var(--text-muted);">Snow water equivalent and snow cover estimation</li>
+          <li style="font-size:0.95rem;color:var(--text-muted);">Foundation models for Earth observation</li>
+          <li style="font-size:0.95rem;color:var(--text-muted);">Climate-focused computer vision</li>
+        </ul>
       </div>
     </div>
 
@@ -2041,23 +2066,31 @@
   // ============================================================
   function initCountdown(target) {
     function pad(n) { return String(n).padStart(2, '0'); }
+    // All deadline card mini-countdowns: [targetMs, [d-id, h-id, m-id]]
+    const miniCards = [
+      [target,                                      ['mcd-d',  'mcd-h',  'mcd-m' ]],  // May 13 submission
+      [new Date('2026-06-11T11:59:00Z').getTime(),  ['mcd2-d', 'mcd2-h', 'mcd2-m']],  // Jun 10 notification
+      [new Date('2026-07-02T11:59:00Z').getTime(),  ['mcd3-d', 'mcd3-h', 'mcd3-m']],  // Jul 1  camera-ready
+      [new Date('2026-07-17T11:59:00Z').getTime(),  ['mcd4-d', 'mcd4-h', 'mcd4-m']],  // Jul 16 author reg
+    ];
     function tick() {
-      const diff = target - Date.now();
-      if (diff <= 0) {
-        ['cd-days','cd-hours','cd-mins','cd-secs','mcd-d','mcd-h','mcd-m'].forEach(id => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = '00';
-        });
-        return;
-      }
-      const d = Math.floor(diff / 86400000);
-      const h = Math.floor((diff % 86400000) / 3600000);
-      const m = Math.floor((diff % 3600000) / 60000);
-      const s = Math.floor((diff % 60000) / 1000);
-      [['cd-days',d],['cd-hours',h],['cd-mins',m],['cd-secs',s],
-       ['mcd-d',d],['mcd-h',h],['mcd-m',m]].forEach(([id,v]) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = pad(v);
+      const now = Date.now();
+      // Hero countdown (submission deadline only)
+      const diff = target - now;
+      const d = diff > 0 ? Math.floor(diff / 86400000) : 0;
+      const h = diff > 0 ? Math.floor((diff % 86400000) / 3600000) : 0;
+      const m = diff > 0 ? Math.floor((diff % 3600000) / 60000) : 0;
+      const s = diff > 0 ? Math.floor((diff % 60000) / 1000) : 0;
+      [['cd-days',d],['cd-hours',h],['cd-mins',m],['cd-secs',s]].forEach(([id,v]) => {
+        const el = document.getElementById(id); if (el) el.textContent = pad(v);
+      });
+      // Mini-countdowns on each date card
+      miniCards.forEach(([t, ids]) => {
+        const df = t - now;
+        const vals = df > 0
+          ? [Math.floor(df/86400000), Math.floor((df%86400000)/3600000), Math.floor((df%3600000)/60000)]
+          : [0, 0, 0];
+        ids.forEach((id, i) => { const el = document.getElementById(id); if (el) el.textContent = pad(vals[i]); });
       });
     }
     tick();
