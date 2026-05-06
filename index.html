@@ -781,7 +781,7 @@
 
     .dates-grid {
       display: grid;
-      grid-template-columns: repeat(5, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1rem;
     }
     @media (max-width: 1000px) { .dates-grid { grid-template-columns: repeat(3, 1fr); } }
@@ -1570,7 +1570,7 @@
         <div class="dc-icon"><i class="fa-solid fa-pen-to-square"></i></div>
         <div class="dc-label">Deadline</div>
         <h3 class="dc-title">Paper Submission</h3>
-        <div class="dc-date">May 13, 2026</div>
+        <div class="dc-date"><s style="opacity:0.45;font-size:0.9em">May 13, 2026</s> May 20, 2026</div>
         <div class="mini-cd">
           <div class="mcd-unit"><span class="mcd-val" id="mcd-d">--</span><span class="mcd-lbl">d</span></div>
           <span class="mcd-sep">:</span>
@@ -1581,10 +1581,38 @@
       </div>
 
       <div class="date-card cyan glass-card fade-in d1">
+        <div class="dc-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+        <div class="dc-label">Review</div>
+        <h3 class="dc-title">Reviews Due</h3>
+        <div class="dc-date">June 10, 2026</div>
+        <div class="mini-cd">
+          <div class="mcd-unit"><span class="mcd-val" id="mcd5-d">--</span><span class="mcd-lbl">d</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd5-h">--</span><span class="mcd-lbl">h</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd5-m">--</span><span class="mcd-lbl">m</span></div>
+        </div>
+      </div>
+
+      <div class="date-card teal glass-card fade-in d2">
+        <div class="dc-icon"><i class="fa-solid fa-reply-all"></i></div>
+        <div class="dc-label">Rebuttal</div>
+        <h3 class="dc-title">Rebuttal Period</h3>
+        <div class="dc-date">June 11–15, 2026</div>
+        <div class="mini-cd">
+          <div class="mcd-unit"><span class="mcd-val" id="mcd6-d">--</span><span class="mcd-lbl">d</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd6-h">--</span><span class="mcd-lbl">h</span></div>
+          <span class="mcd-sep">:</span>
+          <div class="mcd-unit"><span class="mcd-val" id="mcd6-m">--</span><span class="mcd-lbl">m</span></div>
+        </div>
+      </div>
+
+      <div class="date-card cyan glass-card fade-in d3">
         <div class="dc-icon"><i class="fa-solid fa-envelope-open-text"></i></div>
         <div class="dc-label">Notification</div>
         <h3 class="dc-title">Acceptance Notification</h3>
-        <div class="dc-date">June 10, 2026</div>
+        <div class="dc-date"><s style="opacity:0.45;font-size:0.9em">June 10, 2026</s> June 17, 2026</div>
         <div class="mini-cd">
           <div class="mcd-unit"><span class="mcd-val" id="mcd2-d">--</span><span class="mcd-lbl">d</span></div>
           <span class="mcd-sep">:</span>
@@ -2068,8 +2096,10 @@
     function pad(n) { return String(n).padStart(2, '0'); }
     // All deadline card mini-countdowns: [targetMs, [d-id, h-id, m-id]]
     const miniCards = [
-      [target,                                      ['mcd-d',  'mcd-h',  'mcd-m' ]],  // May 13 submission
-      [new Date('2026-06-11T11:59:00Z').getTime(),  ['mcd2-d', 'mcd2-h', 'mcd2-m']],  // Jun 10 notification
+      [target,                                      ['mcd-d',  'mcd-h',  'mcd-m' ]],  // May 20 submission
+      [new Date('2026-06-11T11:59:00Z').getTime(),  ['mcd5-d', 'mcd5-h', 'mcd5-m']],  // Jun 10 reviews due
+      [new Date('2026-06-16T11:59:00Z').getTime(),  ['mcd6-d', 'mcd6-h', 'mcd6-m']],  // Jun 15 rebuttal end
+      [new Date('2026-06-18T11:59:00Z').getTime(),  ['mcd2-d', 'mcd2-h', 'mcd2-m']],  // Jun 17 notification
       [new Date('2026-07-02T11:59:00Z').getTime(),  ['mcd3-d', 'mcd3-h', 'mcd3-m']],  // Jul 1  camera-ready
       [new Date('2026-07-17T11:59:00Z').getTime(),  ['mcd4-d', 'mcd4-h', 'mcd4-m']],  // Jul 16 author reg
     ];
@@ -2121,8 +2151,8 @@
     initParticles();
     initScrollAnim();
     initNavbar();
-    // May 13, 2026 23:59 AoE = May 14, 2026 11:59 UTC
-    initCountdown(new Date('2026-05-14T11:59:00Z').getTime());
+    // May 20, 2026 23:59 AoE = May 21, 2026 11:59 UTC
+    initCountdown(new Date('2026-05-21T11:59:00Z').getTime());
     initMobileMenu();
     initSlideshow();
   });
