@@ -1066,7 +1066,7 @@
 
     <div class="countdown-wrapper fade-in d4">
       <p class="countdown-label">
-        <i class="fa-regular fa-clock"></i>&nbsp; Submission deadline countdown
+        <i class="fa-regular fa-clock"></i>&nbsp; Workshop happening countdown
       </p>
       <div class="countdown">
         <div class="cd-unit">
@@ -2105,7 +2105,7 @@
     ];
     function tick() {
       const now = Date.now();
-      // Hero countdown (submission deadline only)
+      // Hero countdown (workshop happening)
       const diff = target - now;
       const d = diff > 0 ? Math.floor(diff / 86400000) : 0;
       const h = diff > 0 ? Math.floor((diff % 86400000) / 3600000) : 0;
@@ -2151,8 +2151,8 @@
     initParticles();
     initScrollAnim();
     initNavbar();
-    // May 20, 2026 23:59 AoE = May 21, 2026 11:59 UTC
-    initCountdown(new Date('2026-05-21T11:59:00Z').getTime());
+    // September 17, 2026 09:00 AM
+    initCountdown(new Date('2026-09-17T09:00:00').getTime());
     initMobileMenu();
     initSlideshow();
   });
