@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <style>
@@ -67,7 +67,7 @@
       overflow-x: hidden;
       transition: background 0.35s ease, color 0.35s ease;
     }
-    h1,h2,h3,h4,h5 { font-family: 'Space Grotesk', sans-serif; line-height: 1.2; }
+    h1,h2,h3,h4,h5 { font-family: 'Inter', sans-serif; line-height: 1.25; }
     a { color: inherit; text-decoration: none; }
     img { max-width: 100%; display: block; }
 
@@ -77,7 +77,7 @@
 
     /* ===== TYPOGRAPHY HELPERS ===== */
     .section-label {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 0.78rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
@@ -178,7 +178,7 @@
     .nav-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
 
     .nav-logo {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1.45rem; font-weight: 700; letter-spacing: 0.04em;
       color: var(--cyan); text-shadow: 0 0 20px rgba(0,229,255,0.4);
       white-space: nowrap;
@@ -293,7 +293,7 @@
       display: inline-flex; align-items: center; gap: 0.55rem;
       padding: 0.6rem 1.5rem; border-radius: 999px;
       background: rgba(41,121,255,0.18); border: 1px solid rgba(255,255,255,0.4);
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 1.05rem; font-weight: 700; letter-spacing: 0.04em;
       color: #fff; margin-bottom: 1.1rem;
       text-shadow: 0 1px 6px rgba(0,0,0,0.5);
@@ -336,7 +336,7 @@
     /* Countdown */
     .countdown-wrapper { margin-top: 0.25rem; }
     .countdown-label {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.72rem;
+      font-family: 'Inter', sans-serif; font-size: 0.72rem;
       letter-spacing: 0.15em; color: var(--text-muted);
       text-transform: uppercase; margin-bottom: 0.85rem;
     }
@@ -345,14 +345,14 @@
     }
     .cd-unit { display: flex; flex-direction: column; align-items: center; gap: 0.3rem; }
     .cd-val {
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: clamp(2rem, 4.5vw, 2.8rem); font-weight: 500;
       color: var(--cyan); text-shadow: 0 0 20px rgba(0,229,255,0.45);
       min-width: 3ch; text-align: center; line-height: 1;
     }
     .cd-lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
     .cd-sep {
-      font-family: 'JetBrains Mono', monospace; font-size: 2.2rem;
+      font-family: 'Inter', sans-serif; font-size: 2.2rem;
       color: var(--border); align-self: center; padding-bottom: 1.1rem;
     }
 
@@ -385,7 +385,7 @@
       .icip-banner { grid-template-columns: 1fr 280px; }
     }
     .icip-banner .icip-flag {
-      font-size: 0.78rem; font-family: 'JetBrains Mono', monospace;
+      font-size: 0.78rem; font-family: 'Inter', sans-serif;
       letter-spacing: 0.15em; text-transform: uppercase;
       color: var(--blue); margin-bottom: 0.5rem;
       display: flex; align-items: center; gap: 0.5rem;
@@ -441,7 +441,7 @@
       border-radius: 12px; background: var(--bg-card2); border: 1px solid var(--border);
     }
     .stat-card i { font-size: 1.5rem; color: var(--cyan); margin-bottom: 0.55rem; display: block; }
-    .stat-val { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.1rem; }
+    .stat-val { font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem; }
     .stat-lbl { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.15rem; }
 
     /* Imagery strip */
@@ -468,7 +468,7 @@
     .imagery-item-label {
       position: absolute; bottom: 0.55rem; left: 0; right: 0;
       text-align: center;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Inter', sans-serif;
       font-size: 0.68rem; font-weight: 600;
       letter-spacing: 0.08em; text-transform: uppercase;
       color: #fff; text-shadow: 0 1px 4px rgba(0,0,0,0.6);
@@ -479,7 +479,7 @@
 
     /* About word cloud */
     .tags-block h4 {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      font-family: 'Inter', sans-serif; font-size: 0.78rem;
       text-transform: uppercase; letter-spacing: 0.12em;
       color: var(--text-muted); margin-bottom: 1.2rem;
     }
@@ -498,7 +498,7 @@
         radial-gradient(ellipse 40% 35% at 75% 65%, rgba(0,191,165,0.05) 0%, transparent 65%);
     }
     .wc-w {
-      position: absolute; font-family: 'Space Grotesk', sans-serif;
+      position: absolute; font-family: 'Inter', sans-serif;
       font-weight: 700; line-height: 1; white-space: nowrap; cursor: default;
       transition: filter 0.25s, opacity 0.25s;
       opacity: 0.82;
@@ -666,33 +666,31 @@
     #schedule { background: var(--bg); }
 
     .schedule-note {
-      text-align: center; margin-bottom: 2rem;
+      text-align: center; margin-bottom: 2.2rem;
       color: var(--text-muted); font-size: 1.05rem;
+      display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;
     }
 
-    .timeline { position: relative; max-width: 820px; margin: 0 auto; }
+    .timeline { position: relative; max-width: 1160px; margin: 0 auto; }
     .timeline::before {
-      content: ''; position: absolute; left: 1.5rem; top: 0; bottom: 0;
+      content: ''; position: absolute; left: 1.1rem; top: 0; bottom: 0;
       width: 2px;
       background: linear-gradient(180deg, var(--blue), var(--cyan), var(--teal));
       border-radius: 2px;
     }
-    @media (min-width: 640px) {
-      .timeline::before { left: 50%; transform: translateX(-50%); }
+    @media (min-width: 900px) {
+      .timeline::before { left: 12.1rem; transform: none; }
     }
 
     .tl-item { position: relative; padding-left: 4rem; margin-bottom: 1.5rem; }
-    @media (min-width: 640px) {
+    @media (min-width: 900px) {
       .tl-item {
         padding-left: 0; display: grid;
-        grid-template-columns: 1fr 2.5rem 1fr; gap: 0 1.1rem; align-items: start;
+        grid-template-columns: 10.5rem 2.2rem minmax(0, 1fr); gap: 0 1.2rem; align-items: start;
       }
-      .tl-item:nth-child(odd)  .tl-body { grid-column: 1; }
-      .tl-item:nth-child(odd)  .tl-dot  { grid-column: 2; }
-      .tl-item:nth-child(odd)  .tl-time { grid-column: 3; }
-      .tl-item:nth-child(even) .tl-body { grid-column: 3; }
-      .tl-item:nth-child(even) .tl-dot  { grid-column: 2; }
-      .tl-item:nth-child(even) .tl-time { grid-column: 1; grid-row: 1; text-align: right; }
+      .tl-item .tl-body { grid-column: 3; }
+      .tl-item .tl-dot  { grid-column: 2; }
+      .tl-item .tl-time { grid-column: 1; grid-row: 1; text-align: right; justify-content: flex-end; }
     }
     .tl-dot {
       position: absolute; left: 0.55rem; top: 0.3rem;
@@ -708,7 +706,12 @@
     .tl-dot-break   { background: var(--text-muted); }
     .tl-dot-award   { background: var(--gold);        box-shadow: 0 0 10px var(--gold); }
 
-    .tl-body { padding: 1.1rem 1.35rem; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border); }
+    .tl-body {
+      padding: 1.25rem 1.5rem;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(41,121,255,0.08), var(--bg-card));
+      border: 1px solid var(--border);
+    }
     .tl-type {
       font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
       text-transform: uppercase; margin-bottom: 0.3rem;
@@ -719,11 +722,34 @@
     .tl-type-break   { color: var(--text-muted);}
     .tl-type-award   { color: var(--gold);      }
 
-    .tl-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.3rem; }
-    .tl-desc  { font-size: 0.9rem; color: var(--text-muted); line-height: 1.65; }
+    .tl-title { font-weight: 700; font-size: 1.08rem; margin-bottom: 0.5rem; line-height: 1.45; }
+    .tl-desc  { font-size: 0.94rem; color: var(--text-muted); line-height: 1.65; display: flex; flex-direction: column; gap: 0.45rem; }
+    .tl-meta {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      width: 100%;
+    }
+    .tl-meta i {
+      color: var(--cyan);
+      margin-top: 0.3rem;
+      min-width: 0.95rem;
+    }
+    .tl-meta-authors i { color: var(--teal); }
     .tl-time  {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.82rem;
-      color: var(--text-muted); padding-top: 1.3rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      padding-top: 1.3rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      letter-spacing: 0.01em;
+    }
+    .tl-time i {
+      color: var(--blue);
+      font-size: 0.86rem;
     }
 
     /* ============================================================
@@ -738,7 +764,7 @@
 
     .topic-group { margin-bottom: 1.35rem; }
     .topic-group h4 {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      font-family: 'Inter', sans-serif; font-size: 0.78rem;
       text-transform: uppercase; letter-spacing: 0.12em;
       color: var(--blue); margin-bottom: 0.8rem;
     }
@@ -811,9 +837,9 @@
     .date-card.teal .dc-icon { background: rgba(0,191,165,0.10); color: var(--teal); }
     .date-card.gold .dc-icon { background: rgba(255,214,0,0.10);  color: var(--gold); }
 
-    .dc-label { font-family: 'JetBrains Mono', monospace; font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .dc-label { font-family: 'Inter', sans-serif; font-size: 0.73rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; }
     .dc-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.65rem; }
-    .dc-date  { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 500; margin-bottom: 0.8rem; }
+    .dc-date  { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 500; margin-bottom: 0.8rem; }
     .date-card.blue .dc-date { color: var(--blue); }
     .date-card.cyan .dc-date { color: var(--cyan); }
     .date-card.teal .dc-date { color: var(--teal); }
@@ -821,9 +847,9 @@
 
     .mini-cd { display: flex; gap: 0.55rem; margin-top: 0.8rem; align-items: flex-end; }
     .mcd-unit { text-align: center; }
-    .mcd-val { font-family: 'JetBrains Mono', monospace; font-size: 1.15rem; font-weight: 600; color: var(--blue); display: block; line-height: 1; }
+    .mcd-val { font-family: 'Inter', sans-serif; font-size: 1.15rem; font-weight: 600; color: var(--blue); display: block; line-height: 1; }
     .mcd-lbl { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
-    .mcd-sep { font-family: 'JetBrains Mono', monospace; font-size: 1rem; color: var(--border); align-self: flex-start; margin-top: 0.05rem; }
+    .mcd-sep { font-family: 'Inter', sans-serif; font-size: 1rem; color: var(--border); align-self: flex-start; margin-top: 0.05rem; }
     .date-card.cyan .mcd-val { color: var(--cyan); }
     .date-card.teal .mcd-val { color: var(--teal); }
     .date-card.gold .mcd-val { color: var(--gold); }
@@ -862,7 +888,7 @@
       padding: 2.5rem 0.9rem 0.75rem;
     }
     .person-overlay-role {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.62rem;
+      font-family: 'Inter', sans-serif; font-size: 0.62rem;
       letter-spacing: 0.14em; text-transform: uppercase;
       color: rgba(255,255,255,0.6); margin-bottom: 0.2rem;
     }
@@ -955,7 +981,7 @@
     .footer-social a:hover { background: rgba(41,121,255,0.1); border-color: rgba(41,121,255,0.4); color: var(--blue); }
 
     .footer-col h4 {
-      font-family: 'JetBrains Mono', monospace; font-size: 0.78rem;
+      font-family: 'Inter', sans-serif; font-size: 0.78rem;
       text-transform: uppercase; letter-spacing: 0.12em;
       color: var(--text-muted); margin-bottom: 1.1rem;
     }
@@ -1369,223 +1395,224 @@
     <div class="section-header fade-in">
       <p class="section-label"><i class="fa-regular fa-calendar"></i>&nbsp; Program</p>
       <h2 class="section-title">Workshop Program</h2>
-      <p class="section-subtitle">Full-day workshop agenda with complete paper, author, institute, time-slot, and room details.</p>
+      <p class="section-subtitle">Full-day workshop agenda with icon-based highlights, paper details, and session flow for easy scanning.</p>
     </div>
 
     <p class="schedule-note fade-in">
       <span class="badge badge-gray"><i class="fa-regular fa-calendar-check"></i>&nbsp; September 17, 2026 · 09:00–16:30</span>
-      <span class="badge badge-blue"><i class="fa-solid fa-door-open"></i>&nbsp; Dedicated Workshop Room · ICIP 2026 Venue (Tampere)</span>
+      <span class="badge badge-teal"><i class="fa-solid fa-clock"></i>&nbsp; Eastern European Summer Time (EEST) · UTC+3</span>
+      <span class="badge badge-blue"><i class="fa-solid fa-door-open"></i>&nbsp; C8 (Tampere University) · ICIP 2026 Venue</span>
       <span class="badge badge-cyan"><i class="fa-solid fa-file-lines"></i>&nbsp; 14 Papers · 1 Keynote · 1 Introduction · 1 Panel</span>
     </p>
 
     <div class="timeline">
       <div class="tl-item fade-in">
-        <div class="tl-time">9H00 - 9H15</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 09:00 - 09:15</div>
         <div class="tl-dot tl-dot-award"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-award"><i class="fa-solid fa-circle-info"></i>&nbsp; Introduction</p>
           <h4 class="tl-title">Workshop Introduction</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Mourad Oussalah<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Mourad Oussalah</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d1">
-        <div class="tl-time">9H15 - 10H15</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 09:15 - 10:15</div>
         <div class="tl-dot tl-dot-keynote"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-keynote"><i class="fa-solid fa-star"></i>&nbsp; Keynote</p>
           <h4 class="tl-title">From Fields to Fires to Fens: Integrating Deep Learning and Multi-Sensor Earth Observation for Global Environmental Resilience</h4>
-          <p class="tl-desc"><strong>Status:</strong> Invited<br><strong>Presenter:</strong> Kevin Tansey<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-award"></i> Invited keynote</span><span class="tl-meta"><i class="fa-regular fa-user"></i> Kevin Tansey</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d2">
-        <div class="tl-time">10H15 - 10H45</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 10:15 - 10:45</div>
         <div class="tl-dot tl-dot-break"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-break"><i class="fa-solid fa-mug-hot"></i>&nbsp; Break</p>
           <h4 class="tl-title">Coffee Break</h4>
-          <p class="tl-desc"><strong>Room:</strong> Dedicated Workshop Room area</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University) foyer</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d3">
-        <div class="tl-time">10H45 - 12H15</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 10:45 - 12:15</div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-chalkboard-user"></i>&nbsp; Oral Session</p>
           <h4 class="tl-title">Paper Session 1</h4>
-          <p class="tl-desc"><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d4">
-        <div class="tl-time">10H45 - 11H00</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 10:45 - 11:00</div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 3956</p>
           <h4 class="tl-title">Monitoring Algae Blooms in Lough Neagh, United Kingdom using SENTINEL-1 statistical modelling and Sentinel-2 multimodal fusion</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Mahsa Nazarimehrabani<br><strong>Authors:</strong> Mahsa Nazarimehrabani, James Rainey, Jessie Smith, Ashwaq Aldhawi, Maria-Valasia Peppa, Sam Wilson, Kenneth Pierce, Rishad Shafik, Deepayan Bhowmik (Newcastle University)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Mahsa Nazarimehrabani</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Mahsa Nazarimehrabani, James Rainey, Jessie Smith, Ashwaq Aldhawi, Maria-Valasia Peppa, Sam Wilson, Kenneth Pierce, Rishad Shafik, Deepayan Bhowmik (Newcastle University)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in">
-        <div class="tl-time">11H00 - 11H15</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 11:00 - 11:15</div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4140</p>
           <h4 class="tl-title">A Large Scale Open-Source Image and Video Dataset for Robust Wildfire Detection and Classification</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Ugur Gudukbay<br><strong>Authors:</strong> Emadeldeen Hamdan, Yingyi Luo (University of Illinois Chicago); B. Ugur Toreyin (Istanbul Technical University); Erdem Koyuncu (University of Illinois Chicago); Adam Watts (Pacific Wildland Fire Sciences Laboratory, US Forest Service); Ugur Gudukbay (affiliation not given); A. Enis Cetin (University of Illinois Chicago)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Ugur Gudukbay</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Emadeldeen Hamdan, Yingyi Luo (University of Illinois Chicago); B. Ugur Toreyin (Istanbul Technical University); Erdem Koyuncu (University of Illinois Chicago); Adam Watts (Pacific Wildland Fire Sciences Laboratory, US Forest Service); Ugur Gudukbay (affiliation not given); A. Enis Cetin (University of Illinois Chicago)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d1">
-        <div class="tl-time">11H15 - 11H30</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 11:15 - 11:30</div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4386</p>
           <h4 class="tl-title">Multimodal Change Detection for Remote Sensing</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> ShihChih Lin<br><strong>Authors:</strong> ShihChih Lin (National Tsing Hua University); Jia-Xian Jian (National Cheng Kung University); Wei-Chieh Sun (University of Washington); Fang-Yi Lin (National Cheng Kung University); YunTung Chu (University of Washington)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> ShihChih Lin</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> ShihChih Lin (National Tsing Hua University); Jia-Xian Jian (National Cheng Kung University); Wei-Chieh Sun (University of Washington); Fang-Yi Lin (National Cheng Kung University); YunTung Chu (University of Washington)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d2">
-        <div class="tl-time">11H30 - 11H45</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 11:30 - 11:45</div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4152</p>
           <h4 class="tl-title">Constructing an environmentally complex trail camera capture stream and river water segmentation dataset using the EcoSeg hybrid foundation-human annotation tool</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Mustapha Bugti<br><strong>Authors:</strong> Mustafa Bugti, Dimitrios Seremetis, Timothy Becker (Connecticut College)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Mustapha Bugti</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Mustafa Bugti, Dimitrios Seremetis, Timothy Becker (Connecticut College)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d3">
-        <div class="tl-time">11H45 - 12H00</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 11:45 - 12:00</div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4233</p>
           <h4 class="tl-title">MACHINE-ORIENTED RGB-D REPRESENTATION FOR QUADRUPED LIVESTOCK BODY FEATURE EXTRACTION</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> KHIN DAGON WIN<br><strong>Authors:</strong> Khin Dagon Win, Kikuhito Kawasue, Tadaaki Togunaga (University of Miyazaki)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> KHIN DAGON WIN</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Khin Dagon Win, Kikuhito Kawasue, Tadaaki Togunaga (University of Miyazaki)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d4">
-        <div class="tl-time">12H00 - 12H15</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 12:00 - 12:15</div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4122</p>
           <h4 class="tl-title">DEEP LEARNING-BASED SEA ICE THICKNESS ESTIMATION FROM MULTIMODAL SATELLITE AND THERMODYNAMIC DATA IN BALTIC SEA</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Zaffar Zaffar<br><strong>Authors:</strong> Zaffar Zaffar (Finnish Meteorological Institute and Tampere University); Juha Karvonen (Finnish Meteorological Institute); Fahad Sohrab, Ari Visa (Tampere University); Marko Mäkynen (Finnish Meteorological Institute); Moncef Gabbouj (Tampere University)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Zaffar Zaffar</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Zaffar Zaffar (Finnish Meteorological Institute and Tampere University); Juha Karvonen (Finnish Meteorological Institute); Fahad Sohrab, Ari Visa (Tampere University); Marko Mäkynen (Finnish Meteorological Institute); Moncef Gabbouj (Tampere University)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in">
-        <div class="tl-time">12H30 - 14H00</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 12:30 - 14:00</div>
         <div class="tl-dot tl-dot-break"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-break"><i class="fa-solid fa-utensils"></i>&nbsp; Break</p>
           <h4 class="tl-title">Lunch Break</h4>
-          <p class="tl-desc"><strong>Room:</strong> Dedicated Workshop Room area</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University) foyer</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d1">
-        <div class="tl-time">14H00 - 16H00</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 14:00 - 16:00</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-chalkboard-user"></i>&nbsp; Oral Session</p>
           <h4 class="tl-title">Paper Session 2</h4>
-          <p class="tl-desc"><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d2">
-        <div class="tl-time">14H00 - 14H15</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 14:00 - 14:15</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4258</p>
           <h4 class="tl-title">HYDRO-DATASET: A MULTI-MODAL OPEN-SOURCE PIPELINE FOR NORDIC HYDROLOGICAL RESEARCH AND FOUNDATION MODEL BENCHMARKING</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Moinul Islam<br><strong>Authors:</strong> Getnet Demil, Moinul Islam, Mourad Oussalah (University of Oulu)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Moinul Islam</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Getnet Demil, Moinul Islam, Mourad Oussalah (University of Oulu)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d3">
-        <div class="tl-time">14H15 - 14H30</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 14:15 - 14:30</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4047</p>
           <h4 class="tl-title">AI Driven Identification of Stormwater Quality Regimes Using Event Based Monitoring and High Resolution Sensor Data</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Rosa Sartjärvi<br><strong>Authors:</strong> Rosa Sartjärvi, Shahbaz Baig, Petri Juntunen (Savonia University of Applied Sciences); George Nikolakopoulos (Luleå University of Technology); Eero Antikainen (Savonia University of Applied Sciences)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Rosa Sartjärvi</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Rosa Sartjärvi, Shahbaz Baig, Petri Juntunen (Savonia University of Applied Sciences); George Nikolakopoulos (Luleå University of Technology); Eero Antikainen (Savonia University of Applied Sciences)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d4">
-        <div class="tl-time">14H30 - 14H45</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 14:30 - 14:45</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4053</p>
           <h4 class="tl-title">Authenticity Verification of Climate-Change Disaster Damage Claims Using Satellite Images</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Maryam Munawar<br><strong>Authors:</strong> Maryam Munawar, Mourad Oussalah (University of Oulu)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Maryam Munawar</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Maryam Munawar, Mourad Oussalah (University of Oulu)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in">
-        <div class="tl-time">14H45 - 15H00</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 14:45 - 15:00</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4349</p>
           <h4 class="tl-title">Multisensor Data Fusion for Sea Ice Concentration. A comparative Study of U-Net Depths</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Muhammad Amir<br><strong>Authors:</strong> Muhammad Amir, Ari Visa (Tampere University); Juha Karvonen (Finnish Meteorological Institute)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Muhammad Amir</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Muhammad Amir, Ari Visa (Tampere University); Juha Karvonen (Finnish Meteorological Institute)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d1">
-        <div class="tl-time">15H00 - 15H15</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 15:00 - 15:15</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4362</p>
           <h4 class="tl-title">Spatiotemporal Raster Analysis of CIMP6 Freeze-Thaw Dynamics in Cold Climate Region</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Asfand Tehseen<br><strong>Authors:</strong> Asfand Tehseen, Muhammad Farhan Humayun, Zeeshan Tahir Virk, Elina Kasvi, Tomi Westerlund, Jukka Heikkonen, Petteri Alho (University of Turku)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Asfand Tehseen</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Asfand Tehseen, Muhammad Farhan Humayun, Zeeshan Tahir Virk, Elina Kasvi, Tomi Westerlund, Jukka Heikkonen, Petteri Alho (University of Turku)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d2">
-        <div class="tl-time">15H15 - 15H30</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 15:15 - 15:30</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4355</p>
           <h4 class="tl-title">Weighted Prompts Ensemble for Fine-Grained Zero-Short Surface-Water Feature Classification in Aerial Images with RemoteCLIP</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Afifah Shah<br><strong>Authors:</strong> Afifah Shah, Muhammad Farhan Humayun (University of Turku)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Afifah Shah</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Afifah Shah, Muhammad Farhan Humayun (University of Turku)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d3">
-        <div class="tl-time">15H30 - 15H45</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 15:30 - 15:45</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4358</p>
           <h4 class="tl-title">Beyond Weak Labels: Prompt-Guided Local Refinement for Weakly Supervised Water Segmentation in High-Resolution Multispectral Imagery</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Muhammad Farhan Humayun<br><strong>Authors:</strong> Muhammad Farhan Humayun, Mohammad Imangholiloo, Afifah Shah, Tomi Westerlund, Jukka Heikkonen (University of Turku)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Muhammad Farhan Humayun</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Muhammad Farhan Humayun, Mohammad Imangholiloo, Afifah Shah, Tomi Westerlund, Jukka Heikkonen (University of Turku)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in d4">
-        <div class="tl-time">15H45 - 16H00</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 15:45 - 16:00</div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4324</p>
           <h4 class="tl-title">Explainable Peatland Water Table Modeling Using Large Language Models</h4>
-          <p class="tl-desc"><strong>Presenter:</strong> Laleh Davoodi<br><strong>Authors:</strong> Laleh Davoodi, Fahimeh Farahnakian (University of Turku); Lauri Ikkala (Geological Survey of Finland); Lassi Päkkilä, Hannu Marttila (University of Oulu); Anton Akusok (Arcada University of Applied Sciences)<br><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Laleh Davoodi</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Laleh Davoodi, Fahimeh Farahnakian (University of Turku); Lauri Ikkala (Geological Survey of Finland); Lassi Päkkilä, Hannu Marttila (University of Oulu); Anton Akusok (Arcada University of Applied Sciences)</span></p>
         </div>
       </div>
 
       <div class="tl-item fade-in">
-        <div class="tl-time">16H00 - 16H30</div>
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 16:00 - 16:30</div>
         <div class="tl-dot tl-dot-award"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-award"><i class="fa-solid fa-people-group"></i>&nbsp; Closure</p>
           <h4 class="tl-title">Panel Discussion and Closure</h4>
-          <p class="tl-desc"><strong>Room:</strong> Dedicated Workshop Room</p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
     </div>
