@@ -780,8 +780,17 @@
     }
     .schedule-actions {
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
       margin: 0 0 2rem;
+    }
+    .schedule-actions .btn[disabled] { opacity: 0.65; cursor: progress; }
+    .schedule-actions-error {
+      font-size: 0.9rem;
+      color: #ef5350;
+      text-align: center;
+      max-width: 32rem;
     }
 
     /* ============================================================
@@ -1438,9 +1447,10 @@
     </p>
 
     <div class="schedule-actions fade-in">
-      <a href="assets/HydroImaging_Workshop_Program.pdf" class="btn btn-primary" download>
+      <button id="programPdfBtn" class="btn btn-primary" type="button">
         <i class="fa-solid fa-file-pdf"></i>&nbsp; Download Full Program (PDF)
-      </a>
+      </button>
+      <p id="programPdfError" class="schedule-actions-error" role="status" hidden></p>
     </div>
 
     <div class="timeline">
@@ -1450,7 +1460,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-award"><i class="fa-solid fa-circle-info"></i>&nbsp; Introduction</p>
           <h4 class="tl-title">Workshop Introduction</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Mourad Oussalah</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Mourad Oussalah</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
@@ -1460,7 +1470,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-keynote"><i class="fa-solid fa-star"></i>&nbsp; Keynote</p>
           <h4 class="tl-title">From Fields to Fires to Fens: Integrating Deep Learning and Multi-Sensor Earth Observation for Global Environmental Resilience</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-award"></i> Invited keynote</span><span class="tl-meta"><i class="fa-regular fa-user"></i> Kevin Tansey</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
+          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-award"></i> Invited keynote</span><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Kevin Tansey</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
@@ -1470,7 +1480,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-break"><i class="fa-solid fa-mug-hot"></i>&nbsp; Break</p>
           <h4 class="tl-title">Coffee Break</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University) foyer</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University) foyer</span></p>
         </div>
       </div>
 
@@ -1480,7 +1490,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-chalkboard-user"></i>&nbsp; Oral Session</p>
           <h4 class="tl-title">Paper Session 1</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
@@ -1490,7 +1500,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 3956</p>
           <h4 class="tl-title">Monitoring Algae Blooms in Lough Neagh, United Kingdom using SENTINEL-1 statistical modelling and Sentinel-2 multimodal fusion</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Mahsa Nazarimehrabani</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Mahsa Nazarimehrabani, James Rainey, Jessie Smith, Ashwaq Aldhawi, Maria-Valasia Peppa, Sam Wilson, Kenneth Pierce, Rishad Shafik, Deepayan Bhowmik (Newcastle University)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Mahsa Nazarimehrabani</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Mahsa Nazarimehrabani, James Rainey, Jessie Smith, Ashwaq Aldhawi, Maria-Valasia Peppa, Sam Wilson, Kenneth Pierce, Rishad Shafik, Deepayan Bhowmik (Newcastle University)</span></p>
         </div>
       </div>
 
@@ -1500,7 +1510,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4140</p>
           <h4 class="tl-title">A Large Scale Open-Source Image and Video Dataset for Robust Wildfire Detection and Classification</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Ugur Gudukbay</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Emadeldeen Hamdan, Yingyi Luo (University of Illinois Chicago); B. Ugur Toreyin (Istanbul Technical University); Erdem Koyuncu (University of Illinois Chicago); Adam Watts (Pacific Wildland Fire Sciences Laboratory, US Forest Service); Ugur Gudukbay (affiliation not given); A. Enis Cetin (University of Illinois Chicago)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Ugur Gudukbay</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Emadeldeen Hamdan, Yingyi Luo (University of Illinois Chicago); B. Ugur Toreyin (Istanbul Technical University); Erdem Koyuncu (University of Illinois Chicago); Adam Watts (Pacific Wildland Fire Sciences Laboratory, US Forest Service); Ugur Gudukbay (affiliation not given); A. Enis Cetin (University of Illinois Chicago)</span></p>
         </div>
       </div>
 
@@ -1510,7 +1520,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4386</p>
           <h4 class="tl-title">Multimodal Change Detection for Remote Sensing</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> ShihChih Lin</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> ShihChih Lin (National Tsing Hua University); Jia-Xian Jian (National Cheng Kung University); Wei-Chieh Sun (University of Washington); Fang-Yi Lin (National Cheng Kung University); YunTung Chu (University of Washington)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> ShihChih Lin</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> ShihChih Lin (National Tsing Hua University); Jia-Xian Jian (National Cheng Kung University); Wei-Chieh Sun (University of Washington); Fang-Yi Lin (National Cheng Kung University); YunTung Chu (University of Washington)</span></p>
         </div>
       </div>
 
@@ -1520,7 +1530,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4152</p>
           <h4 class="tl-title">Constructing an environmentally complex trail camera capture stream and river water segmentation dataset using the EcoSeg hybrid foundation-human annotation tool</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Mustapha Bugti</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Mustafa Bugti, Dimitrios Seremetis, Timothy Becker (Connecticut College)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Mustapha Bugti</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Mustafa Bugti, Dimitrios Seremetis, Timothy Becker (Connecticut College)</span></p>
         </div>
       </div>
 
@@ -1530,7 +1540,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4233</p>
           <h4 class="tl-title">MACHINE-ORIENTED RGB-D REPRESENTATION FOR QUADRUPED LIVESTOCK BODY FEATURE EXTRACTION</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> KHIN DAGON WIN</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Khin Dagon Win, Kikuhito Kawasue, Tadaaki Togunaga (University of Miyazaki)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> KHIN DAGON WIN</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Khin Dagon Win, Kikuhito Kawasue, Tadaaki Togunaga (University of Miyazaki)</span></p>
         </div>
       </div>
 
@@ -1540,7 +1550,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4122</p>
           <h4 class="tl-title">DEEP LEARNING-BASED SEA ICE THICKNESS ESTIMATION FROM MULTIMODAL SATELLITE AND THERMODYNAMIC DATA IN BALTIC SEA</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Zaffar Zaffar</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Zaffar Zaffar (Finnish Meteorological Institute and Tampere University); Juha Karvonen (Finnish Meteorological Institute); Fahad Sohrab, Ari Visa (Tampere University); Marko Mäkynen (Finnish Meteorological Institute); Moncef Gabbouj (Tampere University)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Zaffar Zaffar</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Zaffar Zaffar (Finnish Meteorological Institute and Tampere University); Juha Karvonen (Finnish Meteorological Institute); Fahad Sohrab, Ari Visa (Tampere University); Marko Mäkynen (Finnish Meteorological Institute); Moncef Gabbouj (Tampere University)</span></p>
         </div>
       </div>
 
@@ -1550,7 +1560,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-break"><i class="fa-solid fa-utensils"></i>&nbsp; Break</p>
           <h4 class="tl-title">Lunch Break</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University) foyer</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University) foyer</span></p>
         </div>
       </div>
 
@@ -1560,7 +1570,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-chalkboard-user"></i>&nbsp; Oral Session</p>
           <h4 class="tl-title">Paper Session 2</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
 
@@ -1570,7 +1580,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4258</p>
           <h4 class="tl-title">HYDRO-DATASET: A MULTI-MODAL OPEN-SOURCE PIPELINE FOR NORDIC HYDROLOGICAL RESEARCH AND FOUNDATION MODEL BENCHMARKING</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Moinul Islam</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Getnet Demil, Moinul Islam, Mourad Oussalah (University of Oulu)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Moinul Islam</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Getnet Demil, Moinul Islam, Mourad Oussalah (University of Oulu)</span></p>
         </div>
       </div>
 
@@ -1580,7 +1590,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4047</p>
           <h4 class="tl-title">AI Driven Identification of Stormwater Quality Regimes Using Event Based Monitoring and High Resolution Sensor Data</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Rosa Sartjärvi</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Rosa Sartjärvi, Shahbaz Baig, Petri Juntunen (Savonia University of Applied Sciences); George Nikolakopoulos (Luleå University of Technology); Eero Antikainen (Savonia University of Applied Sciences)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Rosa Sartjärvi</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Rosa Sartjärvi, Shahbaz Baig, Petri Juntunen (Savonia University of Applied Sciences); George Nikolakopoulos (Luleå University of Technology); Eero Antikainen (Savonia University of Applied Sciences)</span></p>
         </div>
       </div>
 
@@ -1590,7 +1600,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4053</p>
           <h4 class="tl-title">Authenticity Verification of Climate-Change Disaster Damage Claims Using Satellite Images</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Maryam Munawar</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Maryam Munawar, Mourad Oussalah (University of Oulu)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Maryam Munawar</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Maryam Munawar, Mourad Oussalah (University of Oulu)</span></p>
         </div>
       </div>
 
@@ -1600,7 +1610,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4349</p>
           <h4 class="tl-title">Multisensor Data Fusion for Sea Ice Concentration. A comparative Study of U-Net Depths</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Muhammad Amir</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Muhammad Amir, Ari Visa (Tampere University); Juha Karvonen (Finnish Meteorological Institute)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Muhammad Amir</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Muhammad Amir, Ari Visa (Tampere University); Juha Karvonen (Finnish Meteorological Institute)</span></p>
         </div>
       </div>
 
@@ -1610,7 +1620,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4362</p>
           <h4 class="tl-title">Spatiotemporal Raster Analysis of CIMP6 Freeze-Thaw Dynamics in Cold Climate Region</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Asfand Tehseen</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Asfand Tehseen, Muhammad Farhan Humayun, Zeeshan Tahir Virk, Elina Kasvi, Tomi Westerlund, Jukka Heikkonen, Petteri Alho (University of Turku)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Asfand Tehseen</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Asfand Tehseen, Muhammad Farhan Humayun, Zeeshan Tahir Virk, Elina Kasvi, Tomi Westerlund, Jukka Heikkonen, Petteri Alho (University of Turku)</span></p>
         </div>
       </div>
 
@@ -1620,7 +1630,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4355</p>
           <h4 class="tl-title">Weighted Prompts Ensemble for Fine-Grained Zero-Short Surface-Water Feature Classification in Aerial Images with RemoteCLIP</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Afifah Shah</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Afifah Shah, Muhammad Farhan Humayun (University of Turku)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Afifah Shah</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Afifah Shah, Muhammad Farhan Humayun (University of Turku)</span></p>
         </div>
       </div>
 
@@ -1630,7 +1640,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4358</p>
           <h4 class="tl-title">Beyond Weak Labels: Prompt-Guided Local Refinement for Weakly Supervised Water Segmentation in High-Resolution Multispectral Imagery</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Muhammad Farhan Humayun</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Muhammad Farhan Humayun, Mohammad Imangholiloo, Afifah Shah, Tomi Westerlund, Jukka Heikkonen (University of Turku)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Muhammad Farhan Humayun</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Muhammad Farhan Humayun, Mohammad Imangholiloo, Afifah Shah, Tomi Westerlund, Jukka Heikkonen (University of Turku)</span></p>
         </div>
       </div>
 
@@ -1640,7 +1650,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-file-lines"></i>&nbsp; Paper 4324</p>
           <h4 class="tl-title">Explainable Peatland Water Table Modeling Using Large Language Models</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-regular fa-user"></i> Laleh Davoodi</span><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Laleh Davoodi, Fahimeh Farahnakian (University of Turku); Lauri Ikkala (Geological Survey of Finland); Lassi Päkkilä, Hannu Marttila (University of Oulu); Anton Akusok (Arcada University of Applied Sciences)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-presenter"><i class="fa-regular fa-user"></i> Laleh Davoodi</span><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span><span class="tl-meta tl-meta-authors"><i class="fa-solid fa-users"></i> Laleh Davoodi, Fahimeh Farahnakian (University of Turku); Lauri Ikkala (Geological Survey of Finland); Lassi Päkkilä, Hannu Marttila (University of Oulu); Anton Akusok (Arcada University of Applied Sciences)</span></p>
         </div>
       </div>
 
@@ -1650,7 +1660,7 @@
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-award"><i class="fa-solid fa-people-group"></i>&nbsp; Closure</p>
           <h4 class="tl-title">Panel Discussion and Closure</h4>
-          <p class="tl-desc"><span class="tl-meta"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
+          <p class="tl-desc"><span class="tl-meta tl-meta-room"><i class="fa-solid fa-location-dot"></i> C8 (Tampere University)</span></p>
         </div>
       </div>
     </div>
@@ -2382,6 +2392,7 @@
     initCountdown(new Date('2026-09-17T09:00:00').getTime());
     initMobileMenu();
     initSlideshow();
+    initProgramPdf();
   });
 
   // ============================================================
@@ -2424,6 +2435,273 @@
       cur = (cur + 1) % slides.length;
       slides[cur].classList.add('active');
     }, 4000);
+  }
+
+  // ============================================================
+  // 8. PROGRAM PDF
+  //    Built in the browser from the #schedule DOM, so the download
+  //    can never drift from what the page actually shows. Adding a
+  //    timeline item is enough — nothing here needs updating, as long
+  //    as the item keeps the .tl-meta-presenter / .tl-meta-room /
+  //    .tl-meta-authors classes the extraction below reads.
+  // ============================================================
+  const JSPDF_SRC = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/4.2.1/jspdf.umd.min.js';
+  const JSPDF_SRI = 'sha512-plOdviVmws4Y3JAvbnpfKb2hVxKM1lCwsi3vmElYRj+tiDLffZ4FVUj5a8vyKJ9pIgl8JCAHEJ4D1iUKBecswg==';
+  let jsPdfLoader = null;
+
+  // Loaded on demand: a visitor who never asks for the program pays nothing.
+  function loadJsPdf() {
+    if (window.jspdf && window.jspdf.jsPDF) return Promise.resolve(window.jspdf.jsPDF);
+    if (jsPdfLoader) return jsPdfLoader;
+    jsPdfLoader = new Promise((resolve, reject) => {
+      const s = document.createElement('script');
+      s.src = JSPDF_SRC;
+      s.integrity = JSPDF_SRI;
+      s.crossOrigin = 'anonymous';
+      s.referrerPolicy = 'no-referrer';
+      s.onload = () => {
+        if (window.jspdf && window.jspdf.jsPDF) resolve(window.jspdf.jsPDF);
+        else { jsPdfLoader = null; reject(new Error('PDF library unavailable')); }
+      };
+      s.onerror = () => { jsPdfLoader = null; reject(new Error('PDF library could not be loaded')); };
+      document.head.appendChild(s);
+    });
+    return jsPdfLoader;
+  }
+
+  /* Print palette — deliberately the light-theme colors as literals, so the
+     PDF looks identical whichever theme the site is in when it is generated. */
+  const PDF_ACCENT = {
+    keynote: [21, 101, 192],
+    oral:    [0, 119, 182],
+    poster:  [0, 121, 107],
+    break:   [90, 100, 118],
+    award:   [230, 81, 0]
+  };
+  const PDF_INK   = [13, 17, 23];
+  const PDF_MUTED = [75, 85, 104];
+  const PDF_RULE  = [206, 216, 231];
+  const PDF_BAND  = [234, 241, 252];
+
+  /* jsPDF's built-in Helvetica is WinAnsi-encoded, so anything outside
+     Latin-1 (the flag emoji in the organizer roles) has to be dropped and
+     the typographic dashes/quotes folded down before text is drawn. */
+  function pdfSafe(str) {
+    return String(str || '')
+      .replace(/\u00a0/g, ' ')
+      .replace(/[\u2010-\u2015]/g, '-')
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/[\u201c\u201d]/g, '"')
+      .replace(/\u2026/g, '...')
+      .replace(/[^\x20-\x7e\xa1-\xff]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+  function pdfTextOf(node) { return node ? pdfSafe(node.textContent) : ''; }
+
+  // name -> affiliation, harvested from the speaker and organizer cards so the
+  // keynote and the introduction can carry an institute the schedule omits.
+  function collectAffiliations() {
+    const map = {};
+    document.querySelectorAll('#organizers .person-card, #speakers .keynote-card').forEach(card => {
+      const name  = pdfTextOf(card.querySelector('.person-overlay-name')).replace(/^(Prof\.|Dr\.)\s*/i, '');
+      const affil = pdfTextOf(card.querySelector('.person-affil'));
+      if (name && affil) map[name.toLowerCase()] = affil;
+    });
+    return map;
+  }
+
+  function collectProgram() {
+    const affils = collectAffiliations();
+    const items = [];
+
+    document.querySelectorAll('#schedule .tl-item').forEach(el => {
+      // .tl-time also holds the "Session Window" badge on session headers
+      let time = '';
+      const timeEl = el.querySelector('.tl-time');
+      if (timeEl) {
+        const clone = timeEl.cloneNode(true);
+        clone.querySelectorAll('.tl-time-badge').forEach(b => b.remove());
+        time = pdfSafe(clone.textContent);
+      }
+
+      const dot = el.querySelector('.tl-dot');
+      let kind = 'oral';
+      Object.keys(PDF_ACCENT).forEach(k => {
+        if (dot && dot.classList.contains('tl-dot-' + k)) kind = k;
+      });
+
+      const authors = pdfTextOf(el.querySelector('.tl-meta-authors'));
+      let presenter = pdfTextOf(el.querySelector('.tl-meta-presenter'));
+      // Papers already spell out affiliations in the author line; only the
+      // keynote and the introduction need one attached to the presenter.
+      if (presenter && !authors && affils[presenter.toLowerCase()]) {
+        presenter += ', ' + affils[presenter.toLowerCase()];
+      }
+
+      items.push({
+        session: el.classList.contains('tl-item-session'),
+        time:    time,
+        label:   pdfTextOf(el.querySelector('.tl-type')),
+        accent:  PDF_ACCENT[kind],
+        title:   pdfTextOf(el.querySelector('.tl-title')),
+        presenter: presenter,
+        room:    pdfTextOf(el.querySelector('.tl-meta-room')),
+        authors: authors
+      });
+    });
+
+    // The venue repeats on almost every item; print a room only where it
+    // actually differs (the foyer breaks), otherwise it is 20 lines of noise.
+    const tally = {};
+    items.forEach(it => { if (it.room) tally[it.room] = (tally[it.room] || 0) + 1; });
+    const common = Object.keys(tally).sort((a, b) => tally[b] - tally[a])[0];
+    items.forEach(it => { if (it.room === common) it.room = ''; });
+
+    return items;
+  }
+
+  function buildProgramPdf(jsPDF) {
+    const doc = new jsPDF({ unit: 'mm', format: 'a4' });
+    const PAGE_W = 210, PAGE_H = 297;
+    const M = 18, GUTTER = 26;
+    const CX = M + GUTTER;              // content column x
+    const CW = PAGE_W - M - CX;         // content column width
+    const BOTTOM = PAGE_H - 20;
+    const lh = size => size * 0.3528 * 1.3;   // pt -> mm, with leading
+    let y = 20;
+
+    const wrap = (text, size, style, width) => {
+      doc.setFont('helvetica', style).setFontSize(size);
+      return doc.splitTextToSize(text, width || CW);
+    };
+    const put = (lines, x, size, style, color) => {
+      doc.setFont('helvetica', style).setFontSize(size).setTextColor(color[0], color[1], color[2]);
+      lines.forEach(line => { doc.text(line, x, y, { baseline: 'top' }); y += lh(size); });
+    };
+    const rule = () => {
+      doc.setDrawColor(PDF_RULE[0], PDF_RULE[1], PDF_RULE[2]).setLineWidth(0.3);
+      doc.line(M, y, PAGE_W - M, y);
+    };
+    const newPage = () => {
+      doc.addPage();
+      y = 15;
+      doc.setFont('helvetica', 'normal').setFontSize(8).setTextColor(PDF_MUTED[0], PDF_MUTED[1], PDF_MUTED[2]);
+      doc.text('HydroImaging Workshop Program - 17 September 2026', M, y, { baseline: 'top' });
+      y += 5;
+      rule();
+      y += 7;
+    };
+
+    // ---- cover header -------------------------------------------------
+    doc.setFont('helvetica', 'bold').setFontSize(22).setTextColor(PDF_ACCENT.keynote[0], PDF_ACCENT.keynote[1], PDF_ACCENT.keynote[2]);
+    doc.text('HydroImaging Workshop', M, y, { baseline: 'top' });
+    y += 11;
+    put(wrap('Mining Imaging Data for Hydrological and Environmental Modelling', 11.5, 'normal', PAGE_W - 2 * M), M, 11.5, 'normal', PDF_INK);
+    y += 3;
+    rule();
+    y += 5;
+    document.querySelectorAll('#schedule .schedule-note .badge').forEach(badge => {
+      put(wrap(pdfTextOf(badge), 9, 'normal', PAGE_W - 2 * M), M, 9, 'normal', PDF_MUTED);
+      y += 0.8;
+    });
+    y += 3;
+    rule();
+    y += 9;
+
+    // ---- program ------------------------------------------------------
+    collectProgram().forEach(it => {
+      if (it.session) {
+        if (y + 15 > BOTTOM) newPage();
+        doc.setFillColor(PDF_BAND[0], PDF_BAND[1], PDF_BAND[2]);
+        doc.roundedRect(M, y, PAGE_W - 2 * M, 9.5, 1.6, 1.6, 'F');
+        doc.setFont('helvetica', 'bold').setFontSize(10).setTextColor(PDF_ACCENT.keynote[0], PDF_ACCENT.keynote[1], PDF_ACCENT.keynote[2]);
+        doc.text(it.title + '   ' + it.time, M + 4, y + 4.9, { baseline: 'middle' });
+        y += 14;
+        return;
+      }
+
+      // Measure the whole block first so a paper is never split across pages.
+      const parts = [];
+      let height = 0;
+      const add = (text, size, style, color, gap) => {
+        if (!text) return;
+        const lines = wrap(text, size, style);
+        parts.push({ lines: lines, size: size, style: style, color: color, gap: gap });
+        height += gap + lines.length * lh(size);
+      };
+      add(it.label.toUpperCase(), 7.6, 'bold', it.accent, 0);
+      add(it.title, 10.5, 'bold', PDF_INK, 1.4);
+      add(it.presenter ? 'Presented by ' + it.presenter : '', 9, 'normal', PDF_INK, 1.6);
+      add(it.authors, 8.4, 'normal', PDF_MUTED, 1.4);
+      add(it.room, 8.4, 'italic', PDF_MUTED, 1.4);
+
+      if (y + height > BOTTOM) newPage();
+
+      doc.setFont('helvetica', 'bold').setFontSize(8.8).setTextColor(PDF_INK[0], PDF_INK[1], PDF_INK[2]);
+      doc.text(it.time, M, y + 0.4, { baseline: 'top' });
+
+      parts.forEach(p => { y += p.gap; put(p.lines, CX, p.size, p.style, p.color); });
+      y += 7;
+    });
+
+    // ---- organizers ---------------------------------------------------
+    doc.addPage();
+    y = 20;
+    doc.setFont('helvetica', 'bold').setFontSize(16).setTextColor(PDF_ACCENT.keynote[0], PDF_ACCENT.keynote[1], PDF_ACCENT.keynote[2]);
+    doc.text('Workshop Organizers', M, y, { baseline: 'top' });
+    y += 10;
+    rule();
+    y += 7;
+    document.querySelectorAll('#organizers .person-card').forEach(card => {
+      const name  = pdfTextOf(card.querySelector('.person-overlay-name'));
+      const role  = pdfTextOf(card.querySelector('.person-overlay-role'));
+      const affil = pdfTextOf(card.querySelector('.person-affil'));
+      if (!name) return;
+      if (y + 16 > BOTTOM) newPage();
+      put(wrap(name, 11, 'bold', PAGE_W - 2 * M), M, 11, 'bold', PDF_INK);
+      y += 1;
+      put(wrap([role, affil].filter(Boolean).join(' - '), 9, 'normal', PAGE_W - 2 * M), M, 9, 'normal', PDF_MUTED);
+      y += 6;
+    });
+
+    // ---- footers ------------------------------------------------------
+    const pages = doc.getNumberOfPages();
+    for (let p = 1; p <= pages; p++) {
+      doc.setPage(p);
+      doc.setFont('helvetica', 'normal').setFontSize(8).setTextColor(PDF_MUTED[0], PDF_MUTED[1], PDF_MUTED[2]);
+      doc.text('hydroimaging.github.io', M, PAGE_H - 12, { baseline: 'top' });
+      doc.text('Page ' + p + ' of ' + pages, PAGE_W - M, PAGE_H - 12, { baseline: 'top', align: 'right' });
+    }
+
+    doc.setProperties({
+      title: 'HydroImaging Workshop Program',
+      subject: 'IEEE ICIP 2026 Satellite Workshop - Tampere, 17 September 2026'
+    });
+    return doc;
+  }
+
+  function initProgramPdf() {
+    const btn = document.getElementById('programPdfBtn');
+    const err = document.getElementById('programPdfError');
+    if (!btn) return;
+    const label = btn.innerHTML;
+
+    btn.addEventListener('click', () => {
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i>&nbsp; Preparing PDF...';
+      if (err) { err.hidden = true; err.textContent = ''; }
+
+      loadJsPdf()
+        .then(jsPDF => { buildProgramPdf(jsPDF).save('HydroImaging_Workshop_Program.pdf'); })
+        .catch(e => {
+          if (err) {
+            err.textContent = 'The program PDF could not be generated (' + e.message + '). Please check your connection and try again.';
+            err.hidden = false;
+          }
+        })
+        .finally(() => { btn.disabled = false; btn.innerHTML = label; });
+    });
   }
 </script>
 </body>
