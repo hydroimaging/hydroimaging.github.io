@@ -751,6 +751,38 @@
       color: var(--blue);
       font-size: 0.86rem;
     }
+    .tl-time-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.14rem 0.52rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.14);
+      font-size: 0.66rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+    .tl-time-badge-session {
+      color: var(--gold);
+      border-color: rgba(255,193,7,0.35);
+      background: rgba(255,193,7,0.12);
+    }
+
+    .tl-item-session .tl-body {
+      background: linear-gradient(180deg, rgba(255,193,7,0.1), rgba(41,121,255,0.07));
+      border-color: rgba(255,193,7,0.28);
+      box-shadow: 0 0 0 1px rgba(255,193,7,0.16) inset;
+    }
+    .tl-item-session .tl-title { font-size: 1.14rem; }
+    .tl-item-session .tl-time {
+      color: var(--text);
+      font-weight: 700;
+    }
+    .schedule-actions {
+      display: flex;
+      justify-content: center;
+      margin: 0 0 2rem;
+    }
 
     /* ============================================================
        CALL FOR PAPERS
@@ -1405,6 +1437,12 @@
       <span class="badge badge-cyan"><i class="fa-solid fa-file-lines"></i>&nbsp; 14 Papers · 1 Keynote · 1 Introduction · 1 Panel</span>
     </p>
 
+    <div class="schedule-actions fade-in">
+      <a href="assets/HydroImaging_Workshop_Program.pdf" class="btn btn-primary" download>
+        <i class="fa-solid fa-file-pdf"></i>&nbsp; Download Full Program (PDF)
+      </a>
+    </div>
+
     <div class="timeline">
       <div class="tl-item fade-in">
         <div class="tl-time"><i class="fa-regular fa-clock"></i> 09:00 - 09:15</div>
@@ -1436,8 +1474,8 @@
         </div>
       </div>
 
-      <div class="tl-item fade-in d3">
-        <div class="tl-time"><i class="fa-regular fa-clock"></i> 10:45 - 12:15</div>
+      <div class="tl-item fade-in d3 tl-item-session">
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 10:45 - 12:15 <span class="tl-time-badge tl-time-badge-session">Session Window</span></div>
         <div class="tl-dot tl-dot-oral"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-oral"><i class="fa-solid fa-chalkboard-user"></i>&nbsp; Oral Session</p>
@@ -1516,8 +1554,8 @@
         </div>
       </div>
 
-      <div class="tl-item fade-in d1">
-        <div class="tl-time"><i class="fa-regular fa-clock"></i> 14:00 - 16:00</div>
+      <div class="tl-item fade-in d1 tl-item-session">
+        <div class="tl-time"><i class="fa-regular fa-clock"></i> 14:00 - 16:00 <span class="tl-time-badge tl-time-badge-session">Session Window</span></div>
         <div class="tl-dot tl-dot-poster"></div>
         <div class="tl-body glass-card">
           <p class="tl-type tl-type-poster"><i class="fa-solid fa-chalkboard-user"></i>&nbsp; Oral Session</p>
